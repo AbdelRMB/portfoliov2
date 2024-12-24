@@ -47,7 +47,8 @@ export default {
     display: flex;
     justify-content: space-between;
     font-family: 'Press Start 2P', cursive;
-    align-items: center; /* Assure that items are aligned vertically center */
+    align-items: center;
+    /* Assure that items are aligned vertically center */
 }
 
 .navbar2 {
@@ -121,16 +122,19 @@ ul {
 
 @media (max-width: 768px) {
     .navbar {
-        display: none; /* Hide navbar items and potentially replace with a hamburger menu */
+        display: none;
+        /* Hide navbar items and potentially replace with a hamburger menu */
     }
 
     .navbar2 .nav-link {
-        font-size: 12px; /* Slightly larger font for the main site title on smaller screens */
+        font-size: 12px;
+        /* Slightly larger font for the main site title on smaller screens */
     }
 
     /* Hamburger icon style */
     .hamburger-menu {
-        display: flex; /* Show hamburger icon */
+        display: flex;
+        /* Show hamburger icon */
         flex-direction: column;
         cursor: pointer;
         padding: 10px 0;
