@@ -33,7 +33,7 @@ export default {
             this.services.forEach((service, index) => {
                 setTimeout(() => {
                     this.fadeInActive.splice(service.id - 1, 1, true);
-                }, 500 * index); // Animates each card with a delay of 0.5s between them
+                }, 200 * index); // Animates each card with a delay of 0.5s between them
             });
         }
     }

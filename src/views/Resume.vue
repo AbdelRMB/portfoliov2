@@ -72,6 +72,13 @@ export default {
         setActiveSection(id) {
             this.activeSection = id;
         },
+        animateElements() {
+            this.fadeInActive.forEach((_, index) => {
+                setTimeout(() => {
+                    this.fadeInActive[index] = true;
+                }, 100 * index);
+            });
+        }
     },
 };
 </script>
