@@ -21,7 +21,14 @@
                         {{ project.version }}
                     </div>
                 </div>
-                <p>{{ project.description }}</p>
+                <div class="description-container" :class="{ expanded: project.showFullDescription }">
+                    <p>
+                        {{ project.showFullDescription ? project.description : truncatedText(project.description) }}
+                    </p>
+                </div>
+                <button class="toggle-button" @click="toggleDescription(project)">
+                    {{ project.showFullDescription ? "Voir moins" : "Voir plus" }}
+                </button>
                 <div class="tags">
                     <span v-for="tag in project.tags" :key="tag" :class="['tag', getTagClass(tag)]">
                         {{ tag }}
@@ -32,8 +39,10 @@
     </div>
 </template>
 
+
 <script>
-import bg from "@/assets/images/bg.jpg";
+import botdiscord from "@/assets/images/bot-discord.png";
+import saestarwars from "@/assets/images/sae-starwars.png";
 
 export default {
     name: "Projects",
@@ -43,7 +52,7 @@ export default {
                 {
                     id: 1,
                     title: "Sae StarWars",
-                    image: bg,
+                    image: saestarwars,
                     categorie: "Projet Scolaire",
                     status: "En cours",
                     version: "v1.0",
@@ -62,12 +71,12 @@ export default {
                 {
                     id: 2,
                     title: "Bot Discord",
-                    image: bg,
+                    image: botdiscord,
                     categorie: "Projet Client",
                     status: "En cours",
                     version: "v1.0",
                     description:
-                        "Bot Discord développé pour automatiser et améliorer la gestion d'une communauté en ligne. Il intègre des fonctionnalités avancées telles que la modération, la gestion des rôles, l'organisation d'événements, des commandes personnalisées et des notifications en temps réel. Conçu en JavaScript avec la bibliothèque Discord.js, il est optimisé pour offrir une expérience utilisateur fluide et répondre rapidement aux commandes des membres. Ce projet met l'accent sur l'efficacité, la sécurité et la personnalisation selon les besoins spécifiques du client.",
+                        "Bot Discord développé pour automatiser et améliorer la gestion d'une communauté en ligne Intègrant des fonctionnalités avancées. Conçu en JavaScript avec la bibliothèque Discord.js, il est optimisé pour offrir une expérience utilisateur fluide. Bot toujours en cours de développement.",
                     tags: [
                         "JavaScript",
                         "Discord.js",
@@ -79,7 +88,7 @@ export default {
                     title: "Lib UI Pour FiveM",
                     status: "Terminé",
                     version: "v1.0",
-                    image: bg,
+                    image: botdiscord,
                     description:
                         "Lib UI Pour FiveM, bibliothèque personnalisée destinée aux développeurs de serveurs FiveM. Elle offre une solution intuitive et performante pour créer des interfaces utilisateur modernes et dynamiques. Conçue avec Lua pour l'intégration serveur, JavaScript pour les interactions, et Vue.js pour la structure front-end, cette bibliothèque permet de gérer efficacement des menus. Son objectif est de simplifier le processus de développement tout en offrant une expérience utilisateur fluide et esthétiquement agréable, adaptée aux besoins des serveurs de jeu.",
                     categorie: "Projet Perso",
@@ -93,7 +102,7 @@ export default {
                 {
                     id: 4,
                     title: "Lib Notif Pour FiveM",
-                    image: bg,
+                    image: botdiscord,
                     categorie: "Projet Perso",
                     status: "Terminé",
                     version: "v1.0",
@@ -108,7 +117,7 @@ export default {
                 {
                     id: 5,
                     title: "Benny's Job Pour FiveM",
-                    image: bg,
+                    image: botdiscord,
                     categorie: "Projet Perso",
                     status: "Terminé",
                     version: "v1.0",
@@ -123,7 +132,7 @@ export default {
                 {
                     id: 6,
                     title: "F5 Menu Pour FiveM",
-                    image: bg,
+                    image: botdiscord,
                     categorie: "Projet Client",
                     status: "Terminé",
                     version: "v1.0",
@@ -139,7 +148,7 @@ export default {
                     id: 7,
                     title: "Menu Report Pour FiveM",
                     status: "Terminé",
-                    image: bg,
+                    image: botdiscord,
                     categorie: "Projet Perso",
                     version: "v1.0",
                     description:
@@ -190,6 +199,13 @@ export default {
         },
         setFilter(filter) {
             this.activeFilter = filter;
+        },
+        toggleDescription(project) {
+            project.showFullDescription = !project.showFullDescription;
+        },
+        truncatedText(text) {
+            const maxLength = 100;
+            return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
         },
     },
     computed: {
@@ -435,6 +451,34 @@ export default {
 .filter-button:hover {
     background-color: #ff80ab;
     color: #1d001d;
+}
+
+.description-container {
+    max-height: 4.5em;
+    /* Hauteur pour 3 lignes */
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    opacity: 0.7;
+}
+
+.description-container.expanded {
+    max-height: 1000px;
+    /* Grande valeur pour montrer tout le contenu */
+    opacity: 1;
+}
+
+.toggle-button {
+    background: transparent;
+    border: none;
+    color: #ff80ab;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0;
+    padding-bottom: 20px;
+}
+
+.toggle-button:hover {
+    text-decoration: underline;
 }
 
 /* Responsive Adjustments */
