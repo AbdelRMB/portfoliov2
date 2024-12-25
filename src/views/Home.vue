@@ -25,7 +25,7 @@
                 <p>Projets Terminés</p>
             </div>
             <div class="stat-item none" :class="{'fade-in': fadeInActive[7]}">
-                <p class="number">8</p>
+                <p class="number">28</p>
                 <p>Technologies Maîtrisées</p>
             </div>
             <div class="stat-item none" :class="{'fade-in': fadeInActive[8]}">

@@ -65,17 +65,23 @@ export default {
                 { id: 16, name: "Figma", icon: "devicon-figma-plain" },
                 { id: 17, name: "WordPress", icon: "devicon-wordpress-plain" },
                 { id: 18, name: "Android Studio", icon: "devicon-androidstudio-plain" },
-                { id: 19, name: "Discord.js", icon: "devicon-discordjs-plain" }, 
-                { id: 20, name: "GitHub", icon: "devicon-github-plain" }, 
-                { id: 21, name: "GitHub Codespaces", icon: "devicon-githubcodespaces-plain" }, 
-                { id: 22, name: "GitLab", icon: "devicon-gitlab-plain" }, 
-                { id: 23, name: "pnpm", icon: "devicon-pnpm-plain" }, 
-                { id: 24, name: "Windows", icon: "devicon-windows8-plain" }, 
-                { id: 25, name: "Linux", icon: "devicon-linux-plain" }, 
-                { id: 26, name: "MariaDB", icon: "devicon-mariadb-plain" }, 
+                { id: 19, name: "Discord.js", icon: "devicon-discordjs-plain" },
+                { id: 20, name: "GitHub", icon: "devicon-github-plain" },
+                { id: 21, name: "GitHub Codespaces", icon: "devicon-githubcodespaces-plain" },
+                { id: 22, name: "GitLab", icon: "devicon-gitlab-plain" },
+                { id: 23, name: "pnpm", icon: "devicon-pnpm-plain" },
+                { id: 24, name: "Windows", icon: "devicon-windows8-plain" },
+                { id: 25, name: "Linux", icon: "devicon-linux-plain" },
+                { id: 26, name: "MariaDB", icon: "devicon-mariadb-plain" },
                 { id: 27, name: "PHPStorm", icon: "devicon-phpstorm-plain" },],
         };
-    }, computed: { activeSectionTitle() { const section = this.sections.find((s) => s.id === this.activeSection); return section ? section.title : ""; }, }, methods: { setActiveSection(id) { this.activeSection = id; }, },
+    }, computed: {
+        activeSectionTitle() {
+            const section = this.sections.find((s) => s.id === this.activeSection); return section ? section.title : "";
+        },
+    }, methods: {
+        setActiveSection(id) { this.activeSection = id; },
+    },
 }; </script>
 <style scoped>
 /* Conteneur principal */
@@ -91,7 +97,7 @@ export default {
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(50px);
     }
 
     to {
@@ -103,7 +109,7 @@ export default {
 .fade-in {
     opacity: 0;
     animation: fadeIn 0.7s ease-out forwards;
-    animation-delay: calc(var(--delay, 0) * 0.2s);
+    animation-delay: calc(var(--delay, 0) * 0.07s);
 }
 
 /* Colonne de gauche */
