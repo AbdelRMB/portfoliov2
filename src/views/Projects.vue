@@ -1,28 +1,32 @@
 <template>
     <div class="filter-buttons">
-        <button
-            v-for="(filter, index) in filters"
-            :key="filter.value"
-            @click="setFilter(filter.value)"
-            :class="['filter-button fade-in', { active: activeFilter === filter.value }]"
-            :style="`--delay: ${index};`"
-        >
+        <button v-for="(filter, index) in filters" :key="filter.value" @click="setFilter(filter.value)"
+            :class="['filter-button fade-in', { active: activeFilter === filter.value }]" :style="`--delay: ${index};`">
             {{ filter.label }}
         </button>
     </div>
     <div class="projects-container">
-        <div class="project-card fade-in" v-for="(project, index) in filteredProjects" :key="project.id" :style="`--delay: ${index + filters.length};`">
+        <div class="project-card fade-in" v-for="(project, index) in filteredProjects" :key="project.id"
+            :style="`--delay: ${index + filters.length};`">
             <img :src="project.image" :alt="project.title" class="project-image" />
             <div class="project-details">
                 <h2>{{ project.title }}</h2>
                 <h3>{{ project.categorie }}</h3>
+                <div class="statusversion">
+                    <div class="status"
+                        :class="project.status === 'Terminé' ? 'status-completed' : 'status-in-progress'">
+                        {{ project.status }}
+                    </div>
+                    <div class="version" v-if="project.status === 'Terminé'">
+                        {{ project.version }}
+                    </div>
+                </div>
                 <p>{{ project.description }}</p>
                 <div class="tags">
                     <span v-for="tag in project.tags" :key="tag" :class="['tag', getTagClass(tag)]">
                         {{ tag }}
                     </span>
                 </div>
-                <button class="continue-button">Continuer →</button>
             </div>
         </div>
     </div>
@@ -41,6 +45,8 @@ export default {
                     title: "Sae StarWars",
                     image: bg,
                     categorie: "Projet Scolaire",
+                    status: "En cours",
+                    version: "v1.0",
                     description:
                         "Le projet Guide du voyageur galactique est une initiative réalisée dans le cadre de la SAÉ du semestre 3 de l'année 2024-25, inspirée de l'univers de Star Wars. Il vise à développer une application permettant aux voyageurs interstellaires de planifier des itinéraires optimaux entre les planètes en fonction de divers critères.",
                     tags: [
@@ -58,6 +64,8 @@ export default {
                     title: "Bot Discord",
                     image: bg,
                     categorie: "Projet Client",
+                    status: "En cours",
+                    version: "v1.0",
                     description:
                         "Bot Discord développé pour automatiser et améliorer la gestion d'une communauté en ligne. Il intègre des fonctionnalités avancées telles que la modération, la gestion des rôles, l'organisation d'événements, des commandes personnalisées et des notifications en temps réel. Conçu en JavaScript avec la bibliothèque Discord.js, il est optimisé pour offrir une expérience utilisateur fluide et répondre rapidement aux commandes des membres. Ce projet met l'accent sur l'efficacité, la sécurité et la personnalisation selon les besoins spécifiques du client.",
                     tags: [
@@ -69,6 +77,8 @@ export default {
                 {
                     id: 3,
                     title: "Lib UI Pour FiveM",
+                    status: "Terminé",
+                    version: "v1.0",
                     image: bg,
                     description:
                         "Lib UI Pour FiveM, bibliothèque personnalisée destinée aux développeurs de serveurs FiveM. Elle offre une solution intuitive et performante pour créer des interfaces utilisateur modernes et dynamiques. Conçue avec Lua pour l'intégration serveur, JavaScript pour les interactions, et Vue.js pour la structure front-end, cette bibliothèque permet de gérer efficacement des menus. Son objectif est de simplifier le processus de développement tout en offrant une expérience utilisateur fluide et esthétiquement agréable, adaptée aux besoins des serveurs de jeu.",
@@ -85,6 +95,8 @@ export default {
                     title: "Lib Notif Pour FiveM",
                     image: bg,
                     categorie: "Projet Perso",
+                    status: "Terminé",
+                    version: "v1.0",
                     description:
                         "Lib Notif Pour FiveM, bibliothèque personnalisée conçue pour faciliter la gestion des notifications dans les serveurs FiveM. Cette solution offre des notifications interactives et esthétiques qui peuvent être configurées en fonction des besoins spécifiques des serveurs. Développée avec Lua pour une intégration serveur fluide, JavaScript pour des interactions dynamiques, et Vue.js pour un rendu visuel moderne, cette bibliothèque permet aux développeurs de créer des messages contextuels, des alertes, et des feedbacks utilisateur avec facilité. Elle vise à améliorer l'expérience utilisateur tout en simplifiant la personnalisation et l'implémentation côté développeur.",
                     tags: [
@@ -98,6 +110,8 @@ export default {
                     title: "Benny's Job Pour FiveM",
                     image: bg,
                     categorie: "Projet Perso",
+                    status: "Terminé",
+                    version: "v1.0",
                     description:
                         "Benny's Job Pour FiveM est une ressource personnalisée destinée aux serveurs FiveM, permettant de gérer un métier immersif et dynamique pour les garages et mécaniciens. Ce système offre des fonctionnalités avancées telles que la réparation de véhicules et la gestion des commandes client directement en jeu. Développé avec Lua pour une intégration serveur efficace, JavaScript pour des interactions en temps réel, et Vue.js pour des interfaces utilisateur intuitives, ce projet vise à enrichir l'expérience de jeu tout en offrant aux développeurs une solution facile à configurer et à personnaliser. Idéal pour les serveurs roleplay, Benny's Job garantit une immersion totale et une gestion professionnelle des garages.",
                     tags: [
@@ -111,6 +125,8 @@ export default {
                     title: "F5 Menu Pour FiveM",
                     image: bg,
                     categorie: "Projet Client",
+                    status: "Terminé",
+                    version: "v1.0",
                     description:
                         "F5 Menu Pour FiveM est une ressource personnalisée conçue pour simplifier et améliorer la gestion des interactions en jeu sur les serveurs FiveM. Ce menu contextuel est accessible via une simple touche et offre une interface intuitive pour effectuer diverses actions telles que la gestion des joueurs, l'accès à l'inventaire, ou encore les interactions avec les joueurs et véhicules. Développé avec Lua pour une logique serveur robuste, JavaScript pour des fonctionnalités interactives fluides, et Vue.js pour une interface utilisateur moderne, ce projet vise à offrir une expérience fluide et pratique tant pour les joueurs que pour les administrateurs. Entièrement configurable, F5 Menu s'adapte aux besoins de chaque serveur et améliore considérablement la qualité du gameplay roleplay.",
                     tags: [
@@ -122,8 +138,10 @@ export default {
                 {
                     id: 7,
                     title: "Menu Report Pour FiveM",
+                    status: "Terminé",
                     image: bg,
                     categorie: "Projet Perso",
+                    version: "v1.0",
                     description:
                         "Menu Report Pour FiveM est une ressource clé destinée aux serveurs FiveM, conçue pour optimiser la gestion des signalements et améliorer la communication entre les joueurs et les administrateurs. Accessible via une interface intuitive, ce menu permet aux joueurs de soumettre des rapports détaillés sur des incidents en jeu, tels que des comportements inappropriés ou des bugs, directement aux administrateurs. Développé avec Lua pour une intégration serveur performante, JavaScript pour des interactions en temps réel, et Vue.js pour une interface utilisateur moderne, ce projet garantit une gestion efficace des signalements. Configurable et simple à utiliser, Menu Report renforce l'engagement communautaire tout en facilitant la modération et le support sur les serveurs roleplay.",
                     tags: [
@@ -188,6 +206,41 @@ export default {
 </script>
 
 <style scoped>
+.statusversion {
+    display: flex;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.version {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    color: #fff;
+    background-color: #4caf5056;
+    border: 1px solid #4caf50;
+}
+
+.status {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.status-completed {
+    color: #fff;
+    background-color: #4caf5056;
+    border: 1px solid #4caf50;
+}
+
+.status-in-progress {
+    color: #fff;
+    background-color: #ff980056;
+    border: 1px solid #ff9800;
+}
+
 .projects-container {
     display: flex;
     flex-wrap: wrap;
@@ -437,7 +490,7 @@ export default {
         align-items: center;
     }
 
-    .filter-button{
+    .filter-button {
         width: 200px;
     }
 }
