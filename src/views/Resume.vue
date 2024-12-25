@@ -21,13 +21,13 @@
         <div class="resume-content">
             <h2 class="fade-in" style="--delay: 0;">{{ activeSectionTitle }}</h2>
             <p v-if="activeSection === 1" class="fade-in" style="--delay: 1;">
-                Durant les 4 ans d’expériences, j’ai appris plusieurs langages, technologies et concepts dont je vous
-                présente quelques-unes ci-dessous :
+                Durant mes 3 ans d’expériences, j’ai appris plusieurs langages, technologies et concepts tel que :
             </p>
             <div v-if="activeSection === 1" class="skills-grid">
                 <div v-for="(skill, index) in skills" :key="skill.id" class="skill-item fade-in"
                     :style="`--delay: ${index + 2};`">
-                    <img :src="skill.icon" :alt="skill.name" />
+                    <i :class="skill.icon"></i>
+                    <span class="tooltip">{{ skill.name }}</span>
                 </div>
             </div>
         </div>
@@ -47,42 +47,36 @@ export default {
             ],
             activeSection: 1,
             skills: [
-                { id: 1, name: "HTML5", icon: "path/to/html5.svg" },
-                { id: 2, name: "CSS3", icon: "path/to/css3.svg" },
-                { id: 3, name: "JavaScript", icon: "path/to/javascript.svg" },
-                { id: 4, name: "React", icon: "path/to/react.svg" },
-                { id: 5, name: "Angular", icon: "path/to/angular.svg" },
-                { id: 6, name: "Next.js", icon: "path/to/nextjs.svg" },
-                { id: 7, name: "NestJS", icon: "path/to/nestjs.svg" },
-                { id: 8, name: "Tailwind", icon: "path/to/tailwind.svg" },
-                { id: 9, name: "Node.js", icon: "path/to/nodejs.svg" },
-                { id: 10, name: "Figma", icon: "path/to/figma.svg" },
-                { id: 11, name: "Vue.js", icon: "path/to/vuejs.svg" },
-                { id: 12, name: "Express.js", icon: "path/to/express.svg" },
-            ],
+                { id: 1, name: "HTML5", icon: "devicon-html5-plain" },
+                { id: 2, name: "CSS3", icon: "devicon-css3-plain" },
+                { id: 3, name: "JavaScript", icon: "devicon-javascript-plain" },
+                { id: 4, name: "Vue.js", icon: "devicon-vuejs-plain" },
+                { id: 5, name: "Node.js", icon: "devicon-nodejs-plain" },
+                { id: 6, name: "React", icon: "devicon-react-original" },
+                { id: 7, name: "Lua", icon: "devicon-lua-plain-wordmark" },
+                { id: 8, name: "Java", icon: "devicon-java-plain" },
+                { id: 9, name: "C", icon: "devicon-c-plain" },
+                { id: 10, name: "PHP", icon: "devicon-php-plain" },
+                { id: 11, name: "Python", icon: "devicon-python-plain" },
+                { id: 12, name: "MySQL", icon: "devicon-mysql-plain" },
+                { id: 13, name: "TypeScript", icon: "devicon-typescript-plain" },
+                { id: 14, name: "TailwindCSS", icon: "devicon-tailwindcss-plain" },
+                { id: 15, name: "JSON", icon: "devicon-json-plain" },
+                { id: 16, name: "Figma", icon: "devicon-figma-plain" },
+                { id: 17, name: "WordPress", icon: "devicon-wordpress-plain" },
+                { id: 18, name: "Android Studio", icon: "devicon-androidstudio-plain" },
+                { id: 19, name: "Discord.js", icon: "devicon-discordjs-plain" }, 
+                { id: 20, name: "GitHub", icon: "devicon-github-plain" }, 
+                { id: 21, name: "GitHub Codespaces", icon: "devicon-githubcodespaces-plain" }, 
+                { id: 22, name: "GitLab", icon: "devicon-gitlab-plain" }, 
+                { id: 23, name: "pnpm", icon: "devicon-pnpm-plain" }, 
+                { id: 24, name: "Windows", icon: "devicon-windows8-plain" }, 
+                { id: 25, name: "Linux", icon: "devicon-linux-plain" }, 
+                { id: 26, name: "MariaDB", icon: "devicon-mariadb-plain" }, 
+                { id: 27, name: "PHPStorm", icon: "devicon-phpstorm-plain" },],
         };
-    },
-    computed: {
-        activeSectionTitle() {
-            const section = this.sections.find((s) => s.id === this.activeSection);
-            return section ? section.title : "";
-        },
-    },
-    methods: {
-        setActiveSection(id) {
-            this.activeSection = id;
-        },
-        animateElements() {
-            this.fadeInActive.forEach((_, index) => {
-                setTimeout(() => {
-                    this.fadeInActive[index] = true;
-                }, 100 * index);
-            });
-        }
-    },
-};
-</script>
-
+    }, computed: { activeSectionTitle() { const section = this.sections.find((s) => s.id === this.activeSection); return section ? section.title : ""; }, }, methods: { setActiveSection(id) { this.activeSection = id; }, },
+}; </script>
 <style scoped>
 /* Conteneur principal */
 .resume-container {
@@ -183,7 +177,7 @@ export default {
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 20px;
+    gap: 30px;
 }
 
 .skill-item {
@@ -196,18 +190,39 @@ export default {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
     border: 1px solid #4d004d;
-    opacity: 0;
-    animation: fadeIn 0.7s ease-out forwards;
-    animation-delay: calc(var(--delay, 0) * 0.2s);
+    position: relative;
 }
 
-.skill-item img {
-    width: 40px;
-    height: 40px;
+.skill-item i {
+    font-size: 40px;
+    transition: transform 0.3s ease;
+    color: #ff80ab;
 }
 
 .skill-item:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
+}
+
+/* Tooltip */
+.tooltip {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    white-space: nowrap;
+}
+
+.skill-item:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Responsive */
