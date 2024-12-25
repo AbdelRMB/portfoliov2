@@ -414,7 +414,7 @@ export default {
 
 @media (max-width: 1400px) {
     .projects-container {
-        padding: 50px 50px;
+        padding: 25px 5px;
     }
 }
 
@@ -434,10 +434,13 @@ export default {
 
     .filter-buttons {
         flex-direction: column;
+        align-items: center;
+    }
+
+    .filter-button{
+        width: 200px;
     }
 }
-
-
 
 .none {
     opacity: 0;

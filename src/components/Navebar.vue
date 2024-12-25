@@ -7,10 +7,16 @@
                 </li>
             </ul>
         </nav>
-        <nav class="navbar">
+        <!-- Hamburger menu -->
+        <div class="hamburger-menu" @click="toggleMenu">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav class="navbar" :class="{ open: isMenuOpen }">
             <ul class="navbar-nav">
                 <li class="nav-item" v-for="item in menuItems" :key="item.name">
-                    <router-link :to="item.route" class="nav-link" active-class="nav-link-active">
+                    <router-link :to="item.route" class="nav-link" active-class="nav-link-active" @click="closeMenu">
                         {{ item.name }}
                     </router-link>
                 </li>
@@ -21,23 +27,32 @@
 
 <script>
 export default {
-    name: 'Navebar',
+    name: "Navbar",
     data() {
         return {
             menuItems: [
-                { name: 'Présentation', route: '/' },
-                { name: 'Services', route: '/services' },
-                { name: 'Résumé', route: '/resume' },
-                { name: 'Projets', route: '/projects' },
-                { name: 'Contact', route: '/contact' }
-            ]
-        }
-    }
-}
+                { name: "Présentation", route: "/" },
+                { name: "Services", route: "/services" },
+                { name: "Résumé", route: "/resume" },
+                { name: "Projets", route: "/projects" },
+                { name: "Contact", route: "/contact" },
+            ],
+            isMenuOpen: false, // État pour le menu hamburger
+        };
+    },
+    methods: {
+        toggleMenu() {
+            this.isMenuOpen = !this.isMenuOpen; // Bascule entre ouvert et fermé
+        },
+        closeMenu() {
+            this.isMenuOpen = false; // Ferme le menu après avoir cliqué sur un lien
+        },
+    },
+};
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 .header {
     margin: 0;
@@ -46,9 +61,8 @@ export default {
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
-    font-family: 'Press Start 2P', cursive;
+    font-family: "Press Start 2P", cursive;
     align-items: center;
-    /* Assure that items are aligned vertically center */
 }
 
 .navbar2 {
@@ -61,8 +75,13 @@ export default {
     padding: 0;
 }
 
+.navbar-nav {
+    display: flex;
+    gap: 50px;
+}
+
 .nav-item {
-    margin: 0 20px;
+    margin: 0;
 }
 
 .nav-link {
@@ -80,13 +99,13 @@ export default {
 }
 
 .nav-link::after {
-    content: '';
+    content: "";
     display: block;
     width: 0;
     margin-top: 5px;
     height: 2px;
     background: #d14f81;
-    transition: width .3s;
+    transition: width 0.3s;
 }
 
 .nav-link:hover::after,
@@ -94,57 +113,82 @@ export default {
     width: 100%;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    align-items: center;
+/* Hamburger menu */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
 }
 
-/* Media Queries */
-@media (max-width: 1024px) {
-    .header {
-        flex-direction: column;
-        padding: 1rem 1rem;
+.hamburger-menu div {
+    background-color: #ffffff;
+    height: 2px;
+    width: 25px;
+    margin: 3px 0;
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu:hover div {
+    background-color: #d14f81;
+}
+
+@keyframes slideDown {
+    from {
+        max-height: 0;
+        opacity: 0;
     }
 
-    .navbar,
-    .navbar2 {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-
-    .nav-item {
-        margin: 10px 0;
+    to {
+        max-height: 500px;
+        /* Assurez-vous que ce soit suffisamment grand pour votre menu */
+        opacity: 1;
     }
 }
 
+/* Responsive Adjustments */
 @media (max-width: 768px) {
     .navbar {
         display: none;
-        /* Hide navbar items and potentially replace with a hamburger menu */
+        /* Masqué par défaut */
+        overflow: hidden;
+        /* Empêche le débordement lors de l'animation */
+        max-height: 0;
+        /* Taille initiale à 0 */
+        transition: max-height 0.3s ease, opacity 0.3s ease;
     }
 
-    .navbar2 .nav-link {
-        font-size: 12px;
-        /* Slightly larger font for the main site title on smaller screens */
-    }
-
-    /* Hamburger icon style */
     .hamburger-menu {
         display: flex;
-        /* Show hamburger icon */
-        flex-direction: column;
-        cursor: pointer;
-        padding: 10px 0;
     }
 
-    .hamburger-menu div {
-        background-color: #ffffff;
-        height: 2px;
-        width: 25px;
-        margin: 3px 0;
+    .navbar.open {
+        display: flex;
+        /* Affiche le menu lorsque ouvert */
+        max-height: 500px;
+        /* Taille maximum pour le menu déroulant */
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: #1d001d;
+        width: 100%;
+        padding: 1rem;
+        z-index: 10;
+        animation: slideDown 0.3s ease forwards;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .nav-link {
+        font-size: 14px;
+        padding: 10px 0;
+        width: 100%;
+        text-align: left;
     }
 }
 

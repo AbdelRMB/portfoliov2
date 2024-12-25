@@ -3,32 +3,34 @@
         <div class="center-content">
             <div class="text-content">
                 <div class="intro">
-                    <h1 class="none" :class="{'fade-in': fadeInActive[0]}">Bonjour, je suis </h1><h1 class="none" :class="{'fade-in': fadeInActive[1]}">Abdelrahim Riche</h1>
-                    <p class="none" :class="{'fade-in': fadeInActive[2]}">Spécialiste en développement web et mobile, je conçois des solutions créatives qui dynamisent les
+                    <h1 class="none" :class="{ 'fade-in': fadeInActive[0] }">Bonjour, je suis </h1>
+                    <h1 class="none" :class="{ 'fade-in': fadeInActive[1] }">Abdelrahim Riche</h1>
+                    <p class="none" :class="{ 'fade-in': fadeInActive[2] }">Spécialiste en développement web et mobile, je
+                        conçois des solutions créatives qui dynamisent les
                         marques et engagent les utilisateurs.</p>
                 </div>
-                <div class="cv-download none" :class="{'fade-in': fadeInActive[3]}">
+                <div class="cv-download none" :class="{ 'fade-in': fadeInActive[3] }">
                     <button @click="downloadCV">Télécharger mon CV</button>
                 </div>
             </div>
-            <div class="image-content none" :class="{'fade-in': fadeInActive[4]}">
+            <div class="image-content none" :class="{ 'fade-in': fadeInActive[4] }">
                 <img src="@/assets/images/me.png" alt="Abdelrahim Riche">
             </div>
         </div>
         <div class="stats">
-            <div class="stat-item none" :class="{'fade-in': fadeInActive[5]}">
+            <div class="stat-item none" :class="{ 'fade-in': fadeInActive[5] }">
                 <p class="number">3+</p>
                 <p>Années d'expérience</p>
             </div>
-            <div class="stat-item none" :class="{'fade-in': fadeInActive[6]}">
+            <div class="stat-item none" :class="{ 'fade-in': fadeInActive[6] }">
                 <p class="number">13</p>
                 <p>Projets Terminés</p>
             </div>
-            <div class="stat-item none" :class="{'fade-in': fadeInActive[7]}">
+            <div class="stat-item none" :class="{ 'fade-in': fadeInActive[7] }">
                 <p class="number">28</p>
                 <p>Technologies Maîtrisées</p>
             </div>
-            <div class="stat-item none" :class="{'fade-in': fadeInActive[8]}">
+            <div class="stat-item none" :class="{ 'fade-in': fadeInActive[8] }">
                 <p class="number">38</p>
                 <p>Contributions GitHub</p>
             </div>
@@ -183,6 +185,19 @@ export default {
         margin: 10px 0;
         /* Add some vertical spacing between stats */
     }
+
+    .image-content  {
+        padding-top: 15px;
+    }
+
+    h1{
+        text-align: center;
+    }
+
+    .image-content img {
+        max-height: 100%;
+        border-radius: 5%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -210,6 +225,7 @@ export default {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
