@@ -34,6 +34,14 @@
                         {{ tag }}
                     </span>
                 </div>
+                <div class="icon-links">
+                    <a v-if="project.github" :href="project.github" target="_blank" rel="noopener noreferrer" class="icon-link">
+                        <i class="devicon-github-plain"></i>
+                    </a>
+                    <a v-if="project.website" :href="project.website" target="_blank" rel="noopener noreferrer" class="icon-link">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -67,6 +75,8 @@ export default {
                         "PHP",
                         "SQL",
                     ],
+                    github: null,
+                    website: "https://abdelrahimriche.com/sae-starwars/",
                 },
                 {
                     id: 2,
@@ -82,6 +92,8 @@ export default {
                         "Discord.js",
                         "Node.js",
                     ],
+                    github: "https://github.com/AbdelRMB/bot-discord",
+                    website: null,
                 },
                 {
                     id: 3,
@@ -97,7 +109,8 @@ export default {
                         "JavaScript",
                         "Vue.js",
                     ],
-
+                    github: "https://github.com/AbdelRMB/AbdelRMBUI",
+                    website: null,
                 },
                 {
                     id: 4,
@@ -113,6 +126,8 @@ export default {
                         "JavaScript",
                         "Vue.js",
                     ],
+                    github: "https://github.com/AbdelRMB/AbdelRMB-Notify",
+                    website: null,
                 },
                 {
                     id: 5,
@@ -128,6 +143,8 @@ export default {
                         "JavaScript",
                         "Vue.js",
                     ],
+                    github: "https://github.com/AbdelRMB/AbdelRMB-Bennysjob",
+                    website: null,
                 },
                 {
                     id: 6,
@@ -143,6 +160,8 @@ export default {
                         "JavaScript",
                         "Vue.js",
                     ],
+                    github: "https://github.com/AbdelRMB/AbdelRMB_F5Menu",
+                    website: null,
                 },
                 {
                     id: 7,
@@ -158,6 +177,8 @@ export default {
                         "JavaScript",
                         "Vue.js",
                     ],
+                    github: "https://github.com/AbdelRMB/MenuReport",
+                    website: null,
                 }
             ],
             filters: [
@@ -222,6 +243,30 @@ export default {
 </script>
 
 <style scoped>
+.icon-links {
+    display: flex;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.icon-link {
+    font-size: 25px;
+    transition: transform 0.3s ease;
+    background-color: #2a002a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid #4d004d;
+    color: #fff;
+    transition: 0.2s;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.icon-link:hover {
+    color: #ff80ab;
+}
+
 .statusversion {
     display: flex;
     margin-bottom: 10px;

@@ -21,6 +21,7 @@ export default {
                 { id: 1, number: "01", title: "UX/UI Design", description: "Je conçois des interfaces utilisateur intuitives et esthétiques qui offrent une expérience utilisateur optimale. Mon objectif est de créer des designs qui non seulement attirent l'œil, mais qui sont également fonctionnels et faciles à utiliser." },
                 { id: 2, number: "02", title: "Développement web", description: "Vous avez besoin d'une application web moderne, responsive, épurée et attrayante qui respecte parfaitement votre charte graphique ? Je suis là pour transformer vos idées en réalité avec des solutions web sur mesure." },
                 { id: 3, number: "03", title: "Développement mobile", description: "Vous avez besoin d’une application mobile moderne, épurée et attrayante, accessible sur iOS et Android, qui respecte parfaitement votre charte graphique ? Je développe des applications mobiles performantes et user-friendly." },
+                { id: 4, number: "04", title: "Développement FiveM/GMOD", description: "Vous cherchez un développeur FiveM en Lua ou JS afin de développer des ressources ou pour des missions a courte durée ? Je suis la personne qu'il vous faut !" },
             ],
             fadeInActive: new Array(4).fill(false) // Assuming there are 4 services
         };
