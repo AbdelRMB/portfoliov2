@@ -39,7 +39,7 @@
                         <i class="devicon-github-plain"></i>
                     </a>
                     <a v-if="project.website" :href="project.website" target="_blank" rel="noopener noreferrer" class="icon-link">
-                        <i class="fas fa-globe"></i>
+                        <i class="devicon-firefox-plain"></i>
                     </a>
                 </div>
             </div>
@@ -259,7 +259,8 @@ export default {
     color: #fff;
     transition: 0.2s;
     text-decoration: none;
-    padding: 5px 10px;
+    padding: 5px 15px;
+    padding-top: 10px;
     border-radius: 8px;
 }
 
@@ -269,12 +270,10 @@ export default {
 
 .statusversion {
     display: flex;
-    margin-bottom: 10px;
     gap: 10px;
 }
 
 .version {
-    margin-bottom: 10px;
     padding: 5px 10px;
     border-radius: 5px;
     display: inline-block;
@@ -284,7 +283,6 @@ export default {
 }
 
 .status {
-    margin-bottom: 10px;
     padding: 5px 10px;
     border-radius: 5px;
     display: inline-block;
@@ -307,7 +305,7 @@ export default {
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 20px;
-    padding: 50px 200px;
+    padding: 25px 200px;
     background-color: #1d001d;
 }
 
@@ -335,12 +333,11 @@ export default {
 }
 
 .project-details {
-    padding: 20px;
+    padding: 10px;
 }
 
 .project-details h2 {
     font-size: 24px;
-    margin-bottom: 10px;
 }
 
 .project-details h3 {
@@ -351,7 +348,6 @@ export default {
 .project-details p {
     font-size: 16px;
     line-height: 1.6;
-    margin-bottom: 20px;
 }
 
 .tags {
@@ -455,17 +451,6 @@ export default {
     border: 1px solid #7289da;
 }
 
-.continue-button {
-    background: transparent;
-    border: 1px solid #ff80ab;
-    color: #ff80ab;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
 .continue-button:hover {
     background-color: #ff80ab;
     color: #1e1e1e;
@@ -475,7 +460,6 @@ export default {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-bottom: 20px;
 }
 
 .filter-button {
