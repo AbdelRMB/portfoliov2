@@ -72,7 +72,6 @@ export default {
     /* La hauteur prend en compte la navbar */
     padding: 20px;
     color: #ffffff;
-    font-family: 'Arial', sans-serif;
 }
 
 .center-content {

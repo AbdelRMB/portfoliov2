@@ -1,6 +1,17 @@
 <template>
+    <div class="filter-buttons">
+        <button
+            v-for="(filter, index) in filters"
+            :key="filter.value"
+            @click="setFilter(filter.value)"
+            :class="['filter-button fade-in', { active: activeFilter === filter.value }]"
+            :style="`--delay: ${index};`"
+        >
+            {{ filter.label }}
+        </button>
+    </div>
     <div class="projects-container">
-        <div class="project-card" v-for="project in projects" :key="project.id">
+        <div class="project-card fade-in" v-for="(project, index) in filteredProjects" :key="project.id" :style="`--delay: ${index + filters.length};`">
             <img :src="project.image" :alt="project.title" class="project-image" />
             <div class="project-details">
                 <h2>{{ project.title }}</h2>
@@ -56,7 +67,7 @@ export default {
                     ],
                 },
                 {
-                    id: 2,
+                    id: 3,
                     title: "Lib UI Pour FiveM",
                     image: bg,
                     description:
@@ -70,7 +81,7 @@ export default {
 
                 },
                 {
-                    id: 3,
+                    id: 4,
                     title: "Lib Notif Pour FiveM",
                     image: bg,
                     categorie: "Projet Perso",
@@ -83,7 +94,7 @@ export default {
                     ],
                 },
                 {
-                    id: 4,
+                    id: 5,
                     title: "Benny's Job Pour FiveM",
                     image: bg,
                     categorie: "Projet Perso",
@@ -96,10 +107,10 @@ export default {
                     ],
                 },
                 {
-                    id: 5,
+                    id: 6,
                     title: "F5 Menu Pour FiveM",
                     image: bg,
-                    categorie: "Projet Perso",
+                    categorie: "Projet Client",
                     description:
                         "F5 Menu Pour FiveM est une ressource personnalisée conçue pour simplifier et améliorer la gestion des interactions en jeu sur les serveurs FiveM. Ce menu contextuel est accessible via une simple touche et offre une interface intuitive pour effectuer diverses actions telles que la gestion des joueurs, l'accès à l'inventaire, ou encore les interactions avec les joueurs et véhicules. Développé avec Lua pour une logique serveur robuste, JavaScript pour des fonctionnalités interactives fluides, et Vue.js pour une interface utilisateur moderne, ce projet vise à offrir une expérience fluide et pratique tant pour les joueurs que pour les administrateurs. Entièrement configurable, F5 Menu s'adapte aux besoins de chaque serveur et améliore considérablement la qualité du gameplay roleplay.",
                     tags: [
@@ -109,7 +120,7 @@ export default {
                     ],
                 },
                 {
-                    id: 6,
+                    id: 7,
                     title: "Menu Report Pour FiveM",
                     image: bg,
                     categorie: "Projet Perso",
@@ -122,6 +133,13 @@ export default {
                     ],
                 }
             ],
+            filters: [
+                { label: "Tous", value: "all" },
+                { label: "Scolaire", value: "Projet Scolaire" },
+                { label: "Client", value: "Projet Client" },
+                { label: "Perso", value: "Projet Perso" },
+            ],
+            activeFilter: "all",
             tagColors: {
                 JavaScript: "tag-yellow",
                 React: "tag-blue",
@@ -151,6 +169,19 @@ export default {
     methods: {
         getTagClass(tag) {
             return this.tagColors[tag] || "tag-default";
+        },
+        setFilter(filter) {
+            this.activeFilter = filter;
+        },
+    },
+    computed: {
+        filteredProjects() {
+            if (this.activeFilter === "all") {
+                return this.projects;
+            }
+            return this.projects.filter(
+                (project) => project.categorie === this.activeFilter
+            );
         },
     },
 };
@@ -239,7 +270,8 @@ export default {
 }
 
 .tag-purple {
-    background-color: #6e5cc0;
+    background-color: #6e5cc056;
+    border: 1px solid #6e5cc0;
 }
 
 .tag-teal {
@@ -325,6 +357,33 @@ export default {
     color: #1e1e1e;
 }
 
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.filter-button {
+    background-color: #2a002a;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #4d004d;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.filter-button.active {
+    background-color: #ff80ab;
+    color: #1d001d;
+}
+
+.filter-button:hover {
+    background-color: #ff80ab;
+    color: #1d001d;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 1140px) {
     .projects-container {
@@ -372,5 +431,33 @@ export default {
         font-size: 14px;
         padding: 8px 16px;
     }
+
+    .filter-buttons {
+        flex-direction: column;
+    }
+}
+
+
+
+.none {
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.7s ease-out forwards;
+    animation-delay: calc(var(--delay, 0) * 0.1s);
 }
 </style>

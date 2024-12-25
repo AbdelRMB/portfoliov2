@@ -138,8 +138,8 @@ export default {
     display: flex;
     align-items: center;
     gap: 10px;
-    background-color: #004d4d;
-    border: none;
+    background-color: #2a002a;
+    border: 1px solid #4d004d;
     padding: 10px 20px;
     font-size: 16px;
     color: #ffffff;
@@ -149,7 +149,7 @@ export default {
 }
 
 .resume-button.active {
-    background-color: #64ffda;
+    background-color: #ff80ab;
     color: #1d001d;
 }
 
@@ -158,7 +158,7 @@ export default {
 }
 
 .resume-button:hover {
-    background-color: #008080;
+    background-color: #ff80ab;
 }
 
 /* Colonne de droite */
@@ -169,7 +169,7 @@ export default {
 .resume-content h2 {
     font-size: 28px;
     margin-bottom: 20px;
-    color: #64ffda;
+    color: #ff80ab;
 }
 
 .resume-content p {
