@@ -82,6 +82,7 @@ export default {
 
 .nav-item {
     margin: 0;
+    list-style: none;
 }
 
 .nav-link {

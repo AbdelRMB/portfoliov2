@@ -103,7 +103,6 @@ export default {
 
 .image-content img {
     max-height: 80%;
-    border-radius: 50%;
 }
 
 .intro h1 {
