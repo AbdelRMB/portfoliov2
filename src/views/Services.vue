@@ -6,7 +6,7 @@
             <div class="service-content">
                 <h3>{{ service.title }}</h3>
                 <p>{{ service.description }}</p>
-                <button class="continue-button">Continuer →</button>
+                <a href="https://discord.gg/Ahq9mPtf36" class="continue-button">Continuer →</a>
             </div>
         </div>
     </div>
@@ -22,6 +22,8 @@ export default {
                 { id: 2, number: "02", title: "Développement web", description: "Vous avez besoin d'une application web moderne, responsive, épurée et attrayante qui respecte parfaitement votre charte graphique ? Je suis là pour transformer vos idées en réalité avec des solutions web sur mesure." },
                 { id: 3, number: "03", title: "Développement mobile", description: "Vous avez besoin d’une application mobile moderne, épurée et attrayante, accessible sur iOS et Android, qui respecte parfaitement votre charte graphique ? Je développe des applications mobiles performantes et user-friendly." },
                 { id: 4, number: "04", title: "Développement FiveM/GMOD", description: "Vous cherchez un développeur FiveM en Lua ou JS afin de développer des ressources ou pour des missions a courte durée ? Je suis la personne qu'il vous faut !" },
+                { id: 5, number: "05", title: "Développement Bot Discord", description: "Vous avez besoin d'un bot discord fonctionnel simple d'utilisation et rapidement ? Je suis à votre entière disposition afin de pouvoir vous fournir un travail à la hauteur de votre demande." },
+                { id: 6, number: "06", title: "Maintenance", description: "Je peux effectuer un service de maintenance sur vos produit afin de garantir une stabilité et un amélioration constante de ces derniers !" },
             ],
             fadeInActive: new Array(4).fill(false) // Assuming there are 4 services
         };
