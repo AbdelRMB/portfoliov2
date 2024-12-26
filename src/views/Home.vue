@@ -5,12 +5,18 @@
                 <div class="intro">
                     <h1 class="none" :class="{ 'fade-in': fadeInActive[0] }">Bonjour, je suis </h1>
                     <h1 class="none" :class="{ 'fade-in': fadeInActive[1] }">Abdelrahim Riche</h1>
-                    <p class="none" :class="{ 'fade-in': fadeInActive[2] }">Spécialiste en développement web et mobile, je
+                    <p class="none" :class="{ 'fade-in': fadeInActive[2] }">Spécialiste en développement web et mobile,
+                        je
                         conçois des solutions créatives qui dynamisent les
                         marques et engagent les utilisateurs.</p>
                 </div>
                 <div class="cv-download none" :class="{ 'fade-in': fadeInActive[3] }">
                     <button @click="downloadCV">Télécharger mon CV</button>
+                    <div class="icon-links">
+                        <a :href="github.link" target="_blank" rel="noopener noreferrer" class="icon-link">
+                            <i class="devicon-github-plain"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="image-content none" :class="{ 'fade-in': fadeInActive[4] }">
@@ -45,6 +51,9 @@ export default {
     data() {
         return {
             fadeInActive: [false, false, false, false, false, false, false, false, false],
+            github: {
+                link: 'https://github.com/AbdelRMB',
+            },
         }
     },
     mounted() {
@@ -66,6 +75,31 @@ export default {
 </script>
 
 <style scoped>
+.icon-links {
+    display: flex;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.icon-link {
+    font-size: 25px;
+    transition: transform 0.3s ease;
+    background-color: #2a002a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid #4d004d;
+    color: #fff;
+    transition: 0.2s;
+    text-decoration: none;
+    padding: 5px 15px;
+    padding-top: 10px;
+    border-radius: 8px;
+}
+
+.icon-link:hover {
+    color: #ff80ab;
+}
+
 .main-content {
     display: flex;
     flex-direction: column;
@@ -131,6 +165,12 @@ export default {
     font-weight: bold;
 }
 
+.cv-download {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .cv-download button {
     background-color: #4CAF50;
     color: white;
@@ -185,11 +225,11 @@ export default {
         /* Add some vertical spacing between stats */
     }
 
-    .image-content  {
+    .image-content {
         padding-top: 15px;
     }
 
-    h1{
+    h1 {
         text-align: center;
     }
 
