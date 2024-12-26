@@ -13,6 +13,15 @@
                 <h2>{{ project.title }}</h2>
                 <h3>{{ project.categorie }}</h3>
                 <div class="statusversion">
+                    <div class="specialite fivem" v-if="project.spécialité === 'FiveM'">
+                        {{ project.spécialité }}
+                    </div>
+                    <div class="specialite web" v-if="project.spécialité === 'Web'">
+                        {{ project.spécialité }}
+                    </div>
+                    <div class="specialite discord" v-if="project.spécialité === 'Discord'">
+                        {{ project.spécialité }}
+                    </div>
                     <div class="status"
                         :class="project.status === 'Terminé' ? 'status-completed' : 'status-in-progress'">
                         {{ project.status }}
@@ -35,10 +44,12 @@
                     </span>
                 </div>
                 <div class="icon-links">
-                    <a v-if="project.github" :href="project.github" target="_blank" rel="noopener noreferrer" class="icon-link">
+                    <a v-if="project.github" :href="project.github" target="_blank" rel="noopener noreferrer"
+                        class="icon-link">
                         <i class="devicon-github-plain"></i>
                     </a>
-                    <a v-if="project.website" :href="project.website" target="_blank" rel="noopener noreferrer" class="icon-link">
+                    <a v-if="project.website" :href="project.website" target="_blank" rel="noopener noreferrer"
+                        class="icon-link">
                         <i class="devicon-firefox-plain"></i>
                     </a>
                 </div>
@@ -62,6 +73,7 @@ export default {
                     title: "Sae StarWars",
                     image: saestarwars,
                     categorie: "Projet Scolaire",
+                    spécialité: "Web",
                     status: "En cours",
                     version: "v1.0",
                     description:
@@ -83,6 +95,7 @@ export default {
                     title: "Bot Discord",
                     image: botdiscord,
                     categorie: "Projet Client",
+                    spécialité: "Discord",
                     status: "En cours",
                     version: "v1.0",
                     description:
@@ -97,13 +110,14 @@ export default {
                 },
                 {
                     id: 3,
-                    title: "Lib UI Pour FiveM",
+                    title: "Lib UI",
                     status: "Terminé",
                     version: "v1.0",
                     image: botdiscord,
                     description:
                         "Lib UI Pour FiveM, bibliothèque personnalisée destinée aux développeurs de serveurs FiveM. Elle offre une solution intuitive et performante pour créer des interfaces utilisateur modernes et dynamiques. Conçue avec Lua pour l'intégration serveur, JavaScript pour les interactions, et Vue.js pour la structure front-end, cette bibliothèque permet de gérer efficacement des menus. Son objectif est de simplifier le processus de développement tout en offrant une expérience utilisateur fluide et esthétiquement agréable, adaptée aux besoins des serveurs de jeu.",
                     categorie: "Projet Perso",
+                    spécialité: "FiveM",
                     tags: [
                         "Lua",
                         "JavaScript",
@@ -114,9 +128,10 @@ export default {
                 },
                 {
                     id: 4,
-                    title: "Lib Notif Pour FiveM",
+                    title: "Lib Notif",
                     image: botdiscord,
                     categorie: "Projet Perso",
+                    spécialité: "FiveM",
                     status: "Terminé",
                     version: "v1.0",
                     description:
@@ -131,9 +146,10 @@ export default {
                 },
                 {
                     id: 5,
-                    title: "Benny's Job Pour FiveM",
+                    title: "Benny's Job",
                     image: botdiscord,
                     categorie: "Projet Perso",
+                    spécialité: "FiveM",
                     status: "Terminé",
                     version: "v1.0",
                     description:
@@ -148,9 +164,10 @@ export default {
                 },
                 {
                     id: 6,
-                    title: "F5 Menu Pour FiveM",
+                    title: "F5 Menu",
                     image: botdiscord,
                     categorie: "Projet Client",
+                    spécialité: "FiveM",
                     status: "Terminé",
                     version: "v1.0",
                     description:
@@ -165,10 +182,11 @@ export default {
                 },
                 {
                     id: 7,
-                    title: "Menu Report Pour FiveM",
+                    title: "Menu Report",
                     status: "Terminé",
                     image: botdiscord,
                     categorie: "Projet Perso",
+                    spécialité: "FiveM",
                     version: "v1.0",
                     description:
                         "Menu Report Pour FiveM est une ressource clé destinée aux serveurs FiveM, conçue pour optimiser la gestion des signalements et améliorer la communication entre les joueurs et les administrateurs. Accessible via une interface intuitive, ce menu permet aux joueurs de soumettre des rapports détaillés sur des incidents en jeu, tels que des comportements inappropriés ou des bugs, directement aux administrateurs. Développé avec Lua pour une intégration serveur performante, JavaScript pour des interactions en temps réel, et Vue.js pour une interface utilisateur moderne, ce projet garantit une gestion efficace des signalements. Configurable et simple à utiliser, Menu Report renforce l'engagement communautaire tout en facilitant la modération et le support sur les serveurs roleplay.",
@@ -286,6 +304,30 @@ export default {
     padding: 5px 10px;
     border-radius: 5px;
     display: inline-block;
+}
+
+.specialite {
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.web {
+    color: #fff;
+    background-color: #005b7456;
+    border: 1px solid #005a74;
+}
+
+.fivem {
+    color: #fff;
+    background-color: #70007056;
+    border: 1px solid #700070;
+}
+
+.discord {
+    color: #fff;
+    background-color: #7289da56;
+    border: 1px solid #7289da;
 }
 
 .status-completed {
