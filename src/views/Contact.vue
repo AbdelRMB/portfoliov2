@@ -1,6 +1,6 @@
 <template>
     <div class="contact-container">
-        <h1 class="fade-in" style="--delay: 0;">Contactez-moi</h1>
+        <h1 class="fade-in" style="--delay: 0;">Contactez-moi (Problème Technique)</h1>
         <p class="fade-in" style="--delay: 1;">
             Vous avez une question, un projet ou souhaitez simplement discuter ? Envoyez-moi un message en utilisant le formulaire ci-dessous.
         </p>
