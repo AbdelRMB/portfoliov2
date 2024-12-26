@@ -292,6 +292,7 @@ export default {
 }
 
 .version {
+    font-size: 12px;
     padding: 5px 10px;
     border-radius: 5px;
     display: inline-block;
@@ -301,12 +302,14 @@ export default {
 }
 
 .status {
+    font-size: 12px;
     padding: 5px 10px;
     border-radius: 5px;
     display: inline-block;
 }
 
 .specialite {
+    font-size: 12px;
     padding: 5px 10px;
     border-radius: 5px;
     display: inline-block;
@@ -355,7 +358,7 @@ export default {
     background-color: #2a002a;
     color: #ffffff;
     padding: 20px;
-    margin: 20px;
+    margin: 10px;
     width: calc(45% - 40px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
@@ -375,11 +378,12 @@ export default {
 }
 
 .project-details {
-    padding: 10px;
+    padding: 5px;
 }
 
 .project-details h2 {
     font-size: 24px;
+    margin: 0;
 }
 
 .project-details h3 {
@@ -402,7 +406,7 @@ export default {
 .tag {
     padding: 5px 10px;
     border-radius: 10px;
-    font-size: 14px;
+    font-size: 12px;
     color: #ffffff;
 }
 
