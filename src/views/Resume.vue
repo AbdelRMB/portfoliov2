@@ -66,10 +66,11 @@
                 </div>
             </div>
             <div v-if="activeSection === 4" class="about fade-in" style="--delay: 1;">
-                <p>{{ aboutText }}</p>
+                <p class="fade-in" style="--delay: 2;">{{ aboutTextCitation }} <i>- Jean Dion / Le Devoir - 10 Mai 1997</i></p>
+                <p class="fade-in" style="--delay: 3;">{{ aboutText }}</p>
                 <ul class="about-list">
                     <li v-for="(item, index) in aboutPoints" :key="index" class="fade-in"
-                        :style="`--delay: ${index + 2};`">
+                        :style="`--delay: ${index + 4};`">
                         <i class="fas fa-check-circle"></i>
                         {{ item }}
                     </li>
@@ -91,9 +92,10 @@ export default {
                 { id: 4, title: "À propos", icon: "fas fa-info-circle" },
             ],
             activeSection: 1,
+            aboutTextCitation: "“Le principe de l'évolution est beaucoup plus rapide en informatique que chez le bipède.”",
             aboutText: "Je suis un développeur passionné par la technologie et l'innovation. J'aime relever des défis techniques et travailler sur des projets ambitieux. Mon objectif est de fournir des solutions efficaces et esthétiques adaptées aux besoins des utilisateurs.",
             aboutPoints: [
-                "3 ans d'expérience en développement logiciel",
+                "3 ans d'expérience en développement logiciel/Web/applications",
                 "Maîtrise de plusieurs langages et frameworks modernes",
                 "Capacité à collaborer en équipe et à travailler sur des projets complexes",
                 "Toujours en quête d'amélioration et d'apprentissage",
@@ -157,6 +159,15 @@ export default {
                         "Développement et maintenance de sites Web. Création et implémentation d'un 'Help Bot' pour améliorer l'expérience utilisateur.",
                     icon: "fas fa-laptop-code",
                     languages: ["devicon-html5-plain", "devicon-css3-plain", "devicon-javascript-plain", "devicon-mysql-plain", "devicon-nodejs-plain", "devicon-php-plain", "devicon-wordpress-plain"],
+                },
+                {
+                    id: 4,
+                    title: "Chef de Post Coordinateur Dégeivrage",
+                    company: "Groupe 3S - Aéroport Roissy Charles de Gaulle",
+                    date: "2022 - 2024",
+                    description:
+                        "Coordination des opération de dégivrage sur les aéronefs. Gestion et coordination d'une équipe. Respect des procédures de sécurité et de qualité.",
+                    icon: "fas fa-plane",
                 },
             ],
             formations: [

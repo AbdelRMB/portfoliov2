@@ -23,7 +23,7 @@
                 <p>Années d'expérience</p>
             </div>
             <div class="stat-item none" :class="{ 'fade-in': fadeInActive[6] }">
-                <p class="number">13</p>
+                <p class="number">7</p>
                 <p>Projets Terminés</p>
             </div>
             <div class="stat-item none" :class="{ 'fade-in': fadeInActive[7] }">
