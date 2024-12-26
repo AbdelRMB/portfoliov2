@@ -30,6 +30,51 @@
                     <span class="tooltip">{{ skill.name }}</span>
                 </div>
             </div>
+            <div v-if="activeSection === 2" class="timeline">
+                <div class="timeline-item fade-in" style="--delay: 1;" v-for="(experience, index) in experiences"
+                    :key="experience.id" :style="`--delay: ${index + 2};`">
+                    <div class="timeline-icon">
+                        <i :class="experience.icon"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>{{ experience.title }}</h3>
+                        <h4>{{ experience.company }}</h4>
+                        <p>{{ experience.description }}</p>
+                        <div v-if="experience.languages" class="languages-used">
+                            <strong>Langages utilisés :</strong>
+                            <div class="languages-icons">
+                                <i v-for="(lang, idx) in experience.languages" :key="idx" :class="lang"
+                                    class="language-icon"></i>
+                            </div>
+                        </div>
+                        <span class="timeline-date">{{ experience.date }}</span>
+                    </div>
+                </div>
+            </div>
+            <div v-if="activeSection === 3" class="timeline">
+                <div class="timeline-item fade-in" v-for="(formation, index) in formations" :key="formation.id"
+                    :style="`--delay: ${index + 2};`">
+                    <div class="timeline-icon">
+                        <i :class="formation.icon"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>{{ formation.title }}</h3>
+                        <h4>{{ formation.institution }}</h4>
+                        <p>{{ formation.description }}</p>
+                        <span class="timeline-date">{{ formation.date }}</span>
+                    </div>
+                </div>
+            </div>
+            <div v-if="activeSection === 4" class="about fade-in" style="--delay: 1;">
+                <p>{{ aboutText }}</p>
+                <ul class="about-list">
+                    <li v-for="(item, index) in aboutPoints" :key="index" class="fade-in"
+                        :style="`--delay: ${index + 2};`">
+                        <i class="fas fa-check-circle"></i>
+                        {{ item }}
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
@@ -46,6 +91,13 @@ export default {
                 { id: 4, title: "À propos", icon: "fas fa-info-circle" },
             ],
             activeSection: 1,
+            aboutText: "Je suis un développeur passionné par la technologie et l'innovation. J'aime relever des défis techniques et travailler sur des projets ambitieux. Mon objectif est de fournir des solutions efficaces et esthétiques adaptées aux besoins des utilisateurs.",
+            aboutPoints: [
+                "3 ans d'expérience en développement logiciel",
+                "Maîtrise de plusieurs langages et frameworks modernes",
+                "Capacité à collaborer en équipe et à travailler sur des projets complexes",
+                "Toujours en quête d'amélioration et d'apprentissage",
+            ],
             skills: [
                 { id: 1, name: "HTML5", icon: "devicon-html5-plain" },
                 { id: 2, name: "CSS3", icon: "devicon-css3-plain" },
@@ -73,7 +125,58 @@ export default {
                 { id: 24, name: "Windows", icon: "devicon-windows8-plain" },
                 { id: 25, name: "Linux", icon: "devicon-linux-plain" },
                 { id: 26, name: "MariaDB", icon: "devicon-mariadb-plain" },
-                { id: 27, name: "PHPStorm", icon: "devicon-phpstorm-plain" },],
+                { id: 27, name: "PHPStorm", icon: "devicon-phpstorm-plain" },
+            ],
+            experiences: [
+                {
+                    id: 1,
+                    title: "Freelance Développeur UI/UX",
+                    company: "Linear Studio",
+                    date: "2024",
+                    description:
+                        "Création d'interfaces utilisateur personnalisées pour un studio de développement FiveM. Développement avec Vue.js, JavaScript et TailwindCSS pour concevoir des menus dynamiques et interactifs adaptés aux besoins spécifiques des joueurs et des administrateurs.",
+                    icon: "fas fa-laptop-code",
+                    languages: ["devicon-javascript-plain", "devicon-vuejs-plain", "devicon-tailwindcss-plain", "devicon-html5-plain", "devicon-css3-plain", "devicon-lua-plain"],
+                },
+                {
+                    id: 2,
+                    title: "Développeur Web/IA",
+                    company: "I-Oasis",
+                    date: "Juillet 2024 - Septembre 2024",
+                    description:
+                        "Implémentation et manipulation de données en base de données permettant l'utilisation par une IA. Développement et maintenance de sites Web.",
+                    icon: "fas fa-laptop-code",
+                    languages: ["devicon-html5-plain", "devicon-css3-plain", "devicon-javascript-plain", "devicon-mysql-plain", "devicon-nodejs-plain", "devicon-php-plain", "devicon-wordpress-plain"],
+                },
+                {
+                    id: 3,
+                    title: "Stagiaire Développeur",
+                    company: "Iffen",
+                    date: "Avril 2024 - Juin 2024",
+                    description:
+                        "Développement et maintenance de sites Web. Création et implémentation d'un 'Help Bot' pour améliorer l'expérience utilisateur.",
+                    icon: "fas fa-laptop-code",
+                    languages: ["devicon-html5-plain", "devicon-css3-plain", "devicon-javascript-plain", "devicon-mysql-plain", "devicon-nodejs-plain", "devicon-php-plain", "devicon-wordpress-plain"],
+                },
+            ],
+            formations: [
+                {
+                    id: 1,
+                    title: "BUT Informatique",
+                    institution: "IUT Marne-la-Vallée",
+                    date: "2022 - 2026",
+                    description: "Les étudiants formés doivent être capables de participer à la conception, la réalisation et la mise en œuvre de systèmes informatiques correspondant aux besoins des utilisateurs. Pour assumer ces responsabilités, les informaticiens doivent être compétents sur le plan technologique, connaître l'environnement socio-économique dans lequel ils auront à exercer leur profession, posséder une bonne culture générale et se montrer aptes à la communication..",
+                    icon: "fas fa-graduation-cap",
+                },
+                {
+                    id: 2,
+                    title: "Baccalauréat Scientifique",
+                    institution: "Lycée Voillaume",
+                    date: "2019 - 2022",
+                    description: "Spécialité Sciences de l'Ingénieur, Mathématiques. Option Maths expertes.",
+                    icon: "fas fa-school",
+                },
+            ],
         };
     }, computed: {
         activeSectionTitle() {
@@ -84,6 +187,123 @@ export default {
     },
 }; </script>
 <style scoped>
+.about {
+    background-color: #2a002a;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid #4d004d;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.about-list {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.about-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.about-list i {
+    color: #ff80ab;
+}
+
+.languages-used {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ff80ab;
+}
+
+.languages-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.language-icon {
+    font-size: 24px;
+    color: #ff80ab;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.language-icon:hover {
+    transform: scale(1.2);
+    color: #ffffff;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: relative;
+    padding-left: 30px;
+    border-left: 2px solid #4d004d;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    animation: fadeIn 0.7s ease-out forwards;
+    opacity: 0;
+}
+
+.timeline-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #ff80ab;
+    color: #1d001d;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: -30px;
+    top: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 20px;
+}
+
+.timeline-content {
+    background-color: #2a002a;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid #4d004d;
+    color: #ffffff;
+    width: 100%;
+}
+
+.timeline-content h3 {
+    font-size: 20px;
+    color: #ff80ab;
+    margin-bottom: 5px;
+}
+
+.timeline-content h4 {
+    font-size: 16px;
+    color: #cccccc;
+    margin-bottom: 10px;
+}
+
+.timeline-content p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #cccccc;
+    margin-bottom: 10px;
+}
+
+.timeline-date {
+    font-size: 12px;
+    color: #999999;
+}
+
 /* Conteneur principal */
 .resume-container {
     display: flex;
@@ -248,6 +468,21 @@ export default {
 
     .skills-grid {
         grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
+
+    .timeline {
+        padding-left: 20px;
+    }
+
+    .timeline-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        left: -20px;
+    }
+
+    .timeline-content {
+        padding: 15px;
     }
 }
 </style>
