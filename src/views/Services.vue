@@ -102,6 +102,7 @@ export default {
     margin-top: 20px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    text-decoration: none;
 }
 
 .continue-button:hover {
