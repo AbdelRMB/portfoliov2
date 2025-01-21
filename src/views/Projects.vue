@@ -74,7 +74,7 @@ export default {
                     image: saestarwars,
                     categorie: "Projet Scolaire",
                     spécialité: "Web",
-                    status: "En cours",
+                    status: "Terminé",
                     version: "v1.0",
                     description:
                         "Le projet Guide du voyageur galactique est une initiative réalisée dans le cadre de la SAÉ du semestre 3 de l'année 2024-25, inspirée de l'univers de Star Wars. Il vise à développer une application permettant aux voyageurs interstellaires de planifier des itinéraires optimaux entre les planètes en fonction de divers critères.",
@@ -87,8 +87,8 @@ export default {
                         "PHP",
                         "SQL",
                     ],
-                    github: null,
-                    website: "https://abdelrahimriche.com/sae-starwars/",
+                    github: "https://github.com/AbdelRMB/sae-starwars",
+                    website: "https://orbit.abdelrahimriche.com",
                 },
                 {
                     id: 2,
@@ -96,7 +96,7 @@ export default {
                     image: botdiscord,
                     categorie: "Projet Client",
                     spécialité: "Discord",
-                    status: "En cours",
+                    status: "Terminé",
                     version: "v1.0",
                     description:
                         "Bot Discord développé pour automatiser et améliorer la gestion d'une communauté en ligne Intègrant des fonctionnalités avancées. Conçu en JavaScript avec la bibliothèque Discord.js, il est optimisé pour offrir une expérience utilisateur fluide. Bot toujours en cours de développement.",
@@ -197,6 +197,26 @@ export default {
                     ],
                     github: "https://github.com/AbdelRMB/MenuReport",
                     website: null,
+                },
+                {
+                    id: 8,
+                    title: "Belle Site Entreprise",
+                    status: "En cours",
+                    image: botdiscord,
+                    categorie: "Projet Pro",
+                    spécialité: "Web",
+                    version: "v1.0",
+                    description:
+                        "Site Web pour une entreprise de Shooting photo en cours de réalisation.",
+                    tags: [
+                        "HTML",
+                        "JavaScript",
+                        "Vue.js",
+                        "Tailwind CSS",
+                        "CSS",
+                    ],
+                    github: "https://github.com/AbdelRMB/MenuReport",
+                    website: null,
                 }
             ],
             filters: [
@@ -249,12 +269,22 @@ export default {
     },
     computed: {
         filteredProjects() {
-            if (this.activeFilter === "all") {
-                return this.projects;
-            }
-            return this.projects.filter(
-                (project) => project.categorie === this.activeFilter
-            );
+            let filtered = this.activeFilter === "all"
+                ? this.projects
+                : this.projects.filter((project) => project.categorie === this.activeFilter);
+
+            // Trier les projets : "En cours" avant "Terminé"
+            filtered = filtered.sort((a, b) => {
+                if (a.status === "En cours" && b.status === "Terminé") {
+                    return -1;
+                }
+                if (a.status === "Terminé" && b.status === "En cours") {
+                    return 1;
+                }
+                return 0;
+            });
+
+            return filtered;
         },
     },
 };
