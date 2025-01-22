@@ -1,3 +1,4 @@
+import AddProject from '@/views/AddProject.vue'
 import Contact from '@/views/Contact.vue'
 import Home from '@/views/Home.vue'
 import Projects from '@/views/Projects.vue'
@@ -32,6 +33,11 @@ const router = createRouter({
       path: '/contact',
       name: 'Contact',
       component: Contact
+    },
+    {
+      path: '/addproject',
+      name: 'addproject',
+      component: AddProject
     },
   ],
 })
