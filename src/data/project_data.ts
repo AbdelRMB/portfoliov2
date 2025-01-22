@@ -151,9 +151,28 @@ export const projectData = {
                 "Tailwind CSS",
                 "CSS",
             ],
-            github: "https://github.com/AbdelRMB/MenuReport",
+            github: null,
             website: null,
-        }
+        },
+        {
+            id: 9,
+            title: "UNESCO",
+            status: "Terminé",
+            image: botdiscord,
+            categorie: "Projet Scolaire",
+            spécialité: "Web",
+            version: "v1.0",
+            description:
+                "Site Web en partenariat avec l'UNESCO réalisé en première année de BUT Informatique sur le patrimoine mondial de la ville de Séville.",
+            tags: [
+                "HTML",
+                "JavaScript",
+                "CSS",
+                "PHP",
+            ],
+            github: null,
+            website: null,
+        },
     ],
     filters: [
         { label: "Tous", value: "all" },

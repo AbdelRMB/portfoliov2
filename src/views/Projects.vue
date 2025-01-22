@@ -5,6 +5,11 @@
             {{ filter.label }}
         </button>
     </div>
+    <div class="projects-stats">
+        <span>Total des projets : {{ totalProjects }}</span>
+        <span>Projets terminés : {{ completedProjects }}</span>
+        <span>Projets en cours : {{ inProgressProjects }}</span>
+    </div>
     <div class="projects-container">
         <div class="project-card fade-in" v-for="(project, index) in filteredProjects" :key="project.id"
             :style="`--delay: ${index + filters.length};`">
@@ -58,10 +63,7 @@
     </div>
 </template>
 
-
 <script>
-import botdiscord from "@/assets/images/bot-discord.png";
-import saestarwars from "@/assets/images/sae-starwars.png";
 import { projectData } from '@/data/project_data';
 
 export default {
@@ -89,33 +91,74 @@ export default {
     },
     computed: {
         filteredProjects() {
-            let filtered = this.activeFilter === "all"
-                ? this.projects
-                : this.projects.filter((project) => project.categorie === this.activeFilter);
-
-            // Trier les projets : "En cours" avant "Terminé"
-            filtered = filtered.sort((a, b) => {
-                if (a.status === "En cours" && b.status === "Terminé") {
-                    return -1;
+            return this.projects.filter((project) =>
+                this.activeFilter === 'all' ||
+                project.status === this.activeFilter ||
+                project.categorie === this.activeFilter
+            ).sort((a, b) => {
+                if (a.status === 'En cours' && b.status !== 'En cours') {
+                    return -1; // Mettre 'En cours' avant les autres
+                } else if (a.status !== 'En cours' && b.status === 'En cours') {
+                    return 1; // Mettre 'En cours' après les autres
                 }
-                if (a.status === "Terminé" && b.status === "En cours") {
-                    return 1;
-                }
-                return 0;
+                return 0; // Garder l'ordre original si les deux projets ont le même statut
             });
-
-            return filtered;
         },
+        totalProjects() {
+            return this.projects.length;
+        },
+        completedProjects() {
+            return this.projects.filter(project => project.status === 'Terminé').length;
+        },
+        inProgressProjects() {
+            return this.projects.filter(project => project.status === 'En cours').length;
+        }
     },
+    created() {
+        const statusFilters = ['Terminé', 'En cours'];
+        statusFilters.forEach(status => {
+            if (!this.filters.find(filter => filter.value === status)) {
+                this.filters.push({ label: status, value: status });
+            }
+        });
+    }
 };
 </script>
 
 <style scoped>
+.projects-stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.projects-stats span {
+    background-color: #2a002a;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #4d004d;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.projects-stats span.active {
+    background-color: #ff80ab;
+    color: #1d001d;
+}
+
+.projects-stats span:hover {
+    background-color: #ff80ab;
+    color: #1d001d;
+}
+
 .icon-links {
     display: flex;
     border-radius: 8px;
     transition: transform 0.3s ease;
     position: relative;
+    gap: 20px;
 }
 
 .icon-link {
@@ -347,12 +390,12 @@ export default {
     border: 1px solid #7289da;
 }
 
-.tag-lua{
+.tag-lua {
     background-color: #405bbd56;
     border: 1px solid #2e48a7;
 }
 
-.tag-node{
+.tag-node {
     background-color: #68a06356;
     border: 1px solid #68a063;
 }
@@ -465,6 +508,11 @@ export default {
     }
 
     .filter-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .projects-stats {
         flex-direction: column;
         align-items: center;
     }
