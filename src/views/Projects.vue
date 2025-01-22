@@ -6,9 +6,9 @@
         </button>
     </div>
     <div class="projects-stats">
-        <span>Total des projets : {{ totalProjects }}</span>
-        <span>Projets terminés : {{ completedProjects }}</span>
-        <span>Projets en cours : {{ inProgressProjects }}</span>
+        <span class="fade-in" :style="`--delay: ${index};`">Total des projets : {{ totalProjects }}</span>
+        <span class="fade-in" :style="`--delay: ${index};`">Projets terminés : {{ completedProjects }}</span>
+        <span class="fade-in" :style="`--delay: ${index};`">Projets en cours : {{ inProgressProjects }}</span>
     </div>
     <div class="projects-container">
         <div class="project-card fade-in" v-for="(project, index) in filteredProjects" :key="project.id"
