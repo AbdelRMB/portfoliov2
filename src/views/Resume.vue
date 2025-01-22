@@ -162,7 +162,7 @@ export default {
                 },
                 {
                     id: 4,
-                    title: "Chef de Post Coordinateur Dégeivrage",
+                    title: "Chef de Poste Coordinateur Dégeivrage",
                     company: "Groupe 3S - Aéroport Roissy Charles de Gaulle",
                     date: "2022 - 2024",
                     description:
