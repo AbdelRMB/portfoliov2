@@ -29,7 +29,7 @@
                 <p>Années d'expérience</p>
             </div>
             <div class="stat-item none" :class="{ 'fade-in': fadeInActive[6] }">
-                <p class="number">10</p>
+                <p class="number">11</p>
                 <p>Projets Terminés</p>
             </div>
             <div class="stat-item none" :class="{ 'fade-in': fadeInActive[7] }">
@@ -37,7 +37,7 @@
                 <p>Technologies Maîtrisées</p>
             </div>
             <div class="stat-item none" :class="{ 'fade-in': fadeInActive[8] }">
-                <p class="number">54</p>
+                <p class="number">65</p>
                 <p>Contributions GitHub</p>
             </div>
         </div>

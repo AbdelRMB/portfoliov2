@@ -6,14 +6,14 @@ export const projectData = {
     projects: [
         {
             id: 1,
-            title: "Sae StarWars",
+            title: "O.R.B.I.T",
             image: saestarwars,
             categorie: "Projet Scolaire",
             spécialité: "Web",
             status: "Terminé",
             version: "v1.0",
             description:
-                "Le projet Guide du voyageur galactique est une initiative réalisée dans le cadre de la SAÉ du semestre 3 de l'année 2024-25, inspirée de l'univers de Star Wars. Il vise à développer une application permettant aux voyageurs interstellaires de planifier des itinéraires optimaux entre les planètes en fonction de divers critères.",
+                "Le projet ORBIT est une initiative réalisée dans le cadre de la SAÉ du semestre 3 de l'année 2024-25, inspirée de l'univers de Star Wars. Il vise à développer une application permettant aux voyageurs interstellaires de planifier des itinéraires optimaux entre les planètes en fonction de divers critères.",
             tags: [
                 "HTML",
                 "CSS",
@@ -215,6 +215,22 @@ export const projectData = {
             github: null,
             website: "https://banque.abdelrahimriche.com",
         },
+        {
+            id: 12,
+            title: "Hébergement WEB",
+            status: "Terminé",
+            image: botdiscord,
+            categorie: "Projet Perso",
+            spécialité: "Réseau",
+            version: "v1.0",
+            description:
+                "Création de mon propre hébergement WEB sous VPS afin de pouvoir gérer complètement mes options et sécurité.",
+            tags: [
+                "Réseau",
+            ],
+            github: null,
+            website: null,
+        },
     ],
     filters: [
         { label: "Tous", value: "all" },
@@ -245,5 +261,6 @@ export const projectData = {
         C: "tag-c",
         JAVA: "tag-java",
         "Vue.js": "tag-vue",
+        "Réseau": "tag-discord",
     },
 };
