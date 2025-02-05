@@ -29,7 +29,7 @@
                 <p>Années d'expérience</p>
             </div>
             <div class="stat-item none" :class="{ 'fade-in': fadeInActive[6] }">
-                <p class="number">8</p>
+                <p class="number">10</p>
                 <p>Projets Terminés</p>
             </div>
             <div class="stat-item none" :class="{ 'fade-in': fadeInActive[7] }">
@@ -46,6 +46,7 @@
 
 <script>
 import cv from '@/assets/cv.pdf';
+import { projectData } from '@/data/project_data';
 export default {
     name: 'Home',
     data() {
@@ -70,7 +71,12 @@ export default {
                 }, 100 * index);
             });
         }
-    }
+    },
+    computed: {
+        totalProjects() {
+            return this.projects.length;
+        },
+    },
 }
 </script>
 
