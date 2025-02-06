@@ -139,7 +139,7 @@ export const projectData = {
         },
         {
             id: 8,
-            title: "Belle Site Entreprise",
+            title: "Belle Paris Entreprise",
             status: "En cours",
             image: botdiscord,
             categorie: "Projet Client",
@@ -155,7 +155,7 @@ export const projectData = {
                 "CSS",
             ],
             github: null,
-            website: null,
+            website: "https://paris-belle.fr",
         },
         {
             id: 9,
