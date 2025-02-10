@@ -37,7 +37,7 @@
                 <p>Technologies Maîtrisées</p>
             </div>
             <div class="stat-item none" :class="{ 'fade-in': fadeInActive[8] }">
-                <p class="number">65</p>
+                <p class="number">86</p>
                 <p>Contributions GitHub</p>
             </div>
         </div>

@@ -139,7 +139,7 @@ export const projectData = {
         },
         {
             id: 8,
-            title: "Belle Site Entreprise",
+            title: "Belle Paris Entreprise",
             status: "En cours",
             image: botdiscord,
             categorie: "Projet Client",
@@ -155,7 +155,7 @@ export const projectData = {
                 "CSS",
             ],
             github: null,
-            website: null,
+            website: "https://paris-belle.fr",
         },
         {
             id: 9,
@@ -230,6 +230,26 @@ export const projectData = {
             ],
             github: null,
             website: null,
+        },
+        {
+            id: 13,
+            title: "WikiGame",
+            status: "En cours",
+            image: botdiscord,
+            categorie: "Projet Scolaire",
+            spécialité: "Web",
+            version: "v1.0",
+            description:
+                "Création d'un jeu basée sur la lecture d'article Wikipédia.",
+            tags: [
+                "React",
+                "HTML",
+                "JavaScript",
+                "CSS",
+                "TypeScript",
+            ],
+            github: null,
+            website: "https://wikigame.abdelrahimriche.com",
         },
     ],
     filters: [
