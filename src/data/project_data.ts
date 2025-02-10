@@ -247,6 +247,8 @@ export const projectData = {
                 "JavaScript",
                 "CSS",
                 "TypeScript",
+                "Node.js",
+                "Python",
             ],
             github: null,
             website: "https://wikigame.abdelrahimriche.com",
@@ -283,5 +285,6 @@ export const projectData = {
         "Vue.js": "tag-vue",
         "Réseau": "tag-discord",
         TypeScript: "tag-typescript",
+        Python: "tag-python",
     },
 };

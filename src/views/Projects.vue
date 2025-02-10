@@ -213,6 +213,12 @@ export default {
     border: 1px solid #61dafb;
 }
 
+.tag-python {
+    color: #fff;
+    background-color: #30699856;
+    border: 1px solid #306998;
+}
+
 .specialite {
     font-size: 12px;
     padding: 5px 10px;
