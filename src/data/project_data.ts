@@ -231,6 +231,26 @@ export const projectData = {
             github: null,
             website: null,
         },
+        {
+            id: 13,
+            title: "WikiGame",
+            status: "En cours",
+            image: botdiscord,
+            categorie: "Projet Scolaire",
+            spécialité: "Web",
+            version: "v1.0",
+            description:
+                "Création d'un jeu basée sur la lecture d'article Wikipédia.",
+            tags: [
+                "React",
+                "HTML",
+                "JavaScript",
+                "CSS",
+                "TypeScript",
+            ],
+            github: null,
+            website: "https://wikigame.abdelrahimriche.com",
+        },
     ],
     filters: [
         { label: "Tous", value: "all" },
