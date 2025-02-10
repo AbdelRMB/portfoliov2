@@ -247,6 +247,8 @@ export const projectData = {
                 "JavaScript",
                 "CSS",
                 "TypeScript",
+                "Node.js",
+                "Python",
             ],
             github: null,
             website: "https://wikigame.abdelrahimriche.com",
@@ -260,7 +262,7 @@ export const projectData = {
     ],
     tagColors: {
         JavaScript: "tag-yellow",
-        React: "tag-blue",
+        React: "tag-react",
         "NextJs": "tag-purple",
         "Tailwind CSS": "tag-teal",
         "Redux Toolkit": "tag-red",
@@ -282,5 +284,7 @@ export const projectData = {
         JAVA: "tag-java",
         "Vue.js": "tag-vue",
         "Réseau": "tag-discord",
+        TypeScript: "tag-typescript",
+        Python: "tag-python",
     },
 };

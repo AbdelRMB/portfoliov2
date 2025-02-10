@@ -201,6 +201,24 @@ export default {
     display: inline-block;
 }
 
+.tag-typescript {
+    color: #fff;
+    background-color: #3178c656;
+    border: 1px solid #3178c6;
+}
+
+.tag-react {
+    color: #fff;
+    background-color: #61dafb56;
+    border: 1px solid #61dafb;
+}
+
+.tag-python {
+    color: #fff;
+    background-color: #30699856;
+    border: 1px solid #306998;
+}
+
 .specialite {
     font-size: 12px;
     padding: 5px 10px;
