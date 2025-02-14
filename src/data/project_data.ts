@@ -1,9 +1,9 @@
 
 import botdiscord from "@/assets/images/bot-discord.png";
-import saestarwars from "@/assets/images/sae-starwars.png";
 import wikigame from "/assets/images/wikigame.png";
 import prestigesparis from "/assets/images/prestigesparis.png";
 import orbit from "/assets/images/orbit.png";
+import discord from "/assets/images/discord.png";
 
 export const projectData = {
     projects: [
@@ -32,7 +32,7 @@ export const projectData = {
         {
             id: 2,
             title: "Bot Discord",
-            image: botdiscord,
+            image: discord,
             categorie: "Projet Client",
             spécialité: "Discord",
             status: "Terminé",
