@@ -1,6 +1,7 @@
 
 import botdiscord from "@/assets/images/bot-discord.png";
 import saestarwars from "@/assets/images/sae-starwars.png";
+import wikigame from "/assets/images/wikigame.png";
 
 export const projectData = {
     projects: [
@@ -235,7 +236,7 @@ export const projectData = {
             id: 13,
             title: "WikiGame",
             status: "En cours",
-            image: botdiscord,
+            image: wikigame,
             categorie: "Projet Scolaire",
             spécialité: "Web",
             version: "v1.0",
