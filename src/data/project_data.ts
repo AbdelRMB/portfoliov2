@@ -2,6 +2,7 @@
 import botdiscord from "@/assets/images/bot-discord.png";
 import saestarwars from "@/assets/images/sae-starwars.png";
 import wikigame from "/assets/images/wikigame.png";
+import prestigesparis from "/assets/images/prestigesparis.png";
 
 export const projectData = {
     projects: [
@@ -140,9 +141,9 @@ export const projectData = {
         },
         {
             id: 8,
-            title: "Belle Paris Entreprise",
+            title: "Prestiges Paris Entreprise",
             status: "En cours",
-            image: botdiscord,
+            image: prestigesparis,
             categorie: "Projet Client",
             spécialité: "Web",
             version: "v1.0",
@@ -156,7 +157,7 @@ export const projectData = {
                 "CSS",
             ],
             github: null,
-            website: "https://paris-belle.fr",
+            website: "https://prestigesparis.com",
         },
         {
             id: 9,
