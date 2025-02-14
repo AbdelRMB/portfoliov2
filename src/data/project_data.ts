@@ -3,13 +3,14 @@ import botdiscord from "@/assets/images/bot-discord.png";
 import saestarwars from "@/assets/images/sae-starwars.png";
 import wikigame from "/assets/images/wikigame.png";
 import prestigesparis from "/assets/images/prestigesparis.png";
+import orbit from "/assets/images/orbit.png";
 
 export const projectData = {
     projects: [
         {
             id: 1,
             title: "O.R.B.I.T",
-            image: saestarwars,
+            image: orbit,
             categorie: "Projet Scolaire",
             spécialité: "Web",
             status: "Terminé",
