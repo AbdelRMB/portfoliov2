@@ -205,21 +205,19 @@ onMounted(() => {
 }
 
 .cv-download button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
     padding: 10px 20px;
-    border-radius: 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
+    background-color: #4d004d56;
+    border: 1px solid #4d004d;
+    color: white;
     cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: 0.2s;
 }
 
 .cv-download button:hover {
-    background-color: #45a049;
+    background-color: #4d004d;
+    transition: 0.2s;
 }
 
 @media (max-width: 1024px) {
