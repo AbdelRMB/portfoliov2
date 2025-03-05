@@ -1,14 +1,16 @@
 
 import botdiscord from "@/assets/images/bot-discord.png";
-import saestarwars from "@/assets/images/sae-starwars.png";
 import wikigame from "/assets/images/wikigame.png";
+import prestigesparis from "/assets/images/prestigesparis.png";
+import orbit from "/assets/images/orbit.png";
+import discord from "/assets/images/discord.png";
 
 export const projectData = {
     projects: [
         {
             id: 1,
             title: "O.R.B.I.T",
-            image: saestarwars,
+            image: orbit,
             categorie: "Projet Scolaire",
             spécialité: "Web",
             status: "Terminé",
@@ -30,7 +32,7 @@ export const projectData = {
         {
             id: 2,
             title: "Bot Discord",
-            image: botdiscord,
+            image: discord,
             categorie: "Projet Client",
             spécialité: "Discord",
             status: "Terminé",
@@ -140,9 +142,9 @@ export const projectData = {
         },
         {
             id: 8,
-            title: "Belle Paris Entreprise",
+            title: "Prestiges Paris Entreprise",
             status: "En cours",
-            image: botdiscord,
+            image: prestigesparis,
             categorie: "Projet Client",
             spécialité: "Web",
             version: "v1.0",
@@ -156,7 +158,7 @@ export const projectData = {
                 "CSS",
             ],
             github: null,
-            website: "https://paris-belle.fr",
+            website: "https://prestigesparis.com",
         },
         {
             id: 9,
