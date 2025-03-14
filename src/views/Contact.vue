@@ -1,6 +1,6 @@
 <template>
     <div class="contact-container">
-        <h1 class="fade-in" style="--delay: 0;">Contactez-moi (Problème Technique)</h1>
+        <h1 class="fade-in" style="--delay: 0;">Contactez-moi</h1>
         <p class="fade-in" style="--delay: 1;">
             Vous avez une question, un projet ou souhaitez simplement discuter ? Envoyez-moi un message en utilisant le formulaire ci-dessous.
         </p>
@@ -22,11 +22,14 @@
                 <textarea id="message" v-model="formData.message" placeholder="Votre message" rows="5" required></textarea>
             </div>
             <button type="submit" class="submit-button">Envoyer</button>
+            <p v-if="statusMessage">{{ statusMessage }}</p>
         </form>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: 'Contact',
     data() {
@@ -37,20 +40,24 @@ export default {
                 subject: '',
                 message: '',
             },
+            statusMessage: '',
         };
     },
     methods: {
-        handleSubmit() {
-            // Logique pour envoyer le formulaire
-            console.log('Données du formulaire :', this.formData);
-            alert('Votre message a été envoyé avec succès !');
-            // Réinitialiser le formulaire
-            this.formData = {
-                name: '',
-                email: '',
-                subject: '',
-                message: '',
-            };
+        async handleSubmit() {
+            try {
+                const response = await axios.post('http://localhost:3001/send-email', this.formData);
+
+                if (response.data.success) {
+                    this.statusMessage = 'Votre message a été envoyé avec succès !';
+                    this.formData = { name: '', email: '', subject: '', message: '' }; // Reset form
+                } else {
+                    this.statusMessage = 'Erreur lors de l\'envoi du message.';
+                }
+            } catch (error) {
+                console.error(error);
+                this.statusMessage = 'Une erreur s\'est produite. Vérifiez votre connexion ou réessayez plus tard.';
+            }
         },
     },
 };
