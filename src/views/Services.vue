@@ -6,7 +6,7 @@
             <div class="service-content">
                 <h3>{{ service.title }}</h3>
                 <p>{{ service.description }}</p>
-                <a href="https://discord.gg/Ahq9mPtf36" class="continue-button">Continuer →</a>
+                <a href="https://abdelrahimriche.com/#/contact" class="continue-button">Continuer →</a>
             </div>
         </div>
     </div>
