@@ -1,13 +1,14 @@
+import StillLink from '@/projectPage/StillLink.vue'
 import AddProject from '@/views/AddProject.vue'
 import Contact from '@/views/Contact.vue'
 import Home from '@/views/Home.vue'
 import Projects from '@/views/Projects.vue'
 import Resume from '@/views/Resume.vue'
 import Services from '@/views/Services.vue'
-import { createRouter, createWebHashHistory  } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 const router = createRouter({
-  history: createWebHashHistory (import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
@@ -38,7 +39,12 @@ const router = createRouter({
       path: '/addproject',
       name: 'addproject',
       component: AddProject
-    },
+    }, 
+    {
+      path: '/project/:title',
+      name: 'ProjectDetail',
+      component: () => import('@/pages/ProjectDetail.vue')
+    }    
   ],
 })
 
