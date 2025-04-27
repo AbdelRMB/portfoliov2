@@ -4,7 +4,7 @@ import wikigame from "/assets/images/wikigame.png";
 import prestigesparis from "/assets/images/prestigesparis.png";
 import orbit from "/assets/images/orbit.png";
 import discord from "/assets/images/discord.png";
-import stilllink from "/assets/images/still-link.png";
+import stilllink from "/assets/images/stilllink/still-link.png";
 
 export const projectData = {
     projects: [
@@ -29,6 +29,11 @@ export const projectData = {
             ],
             github: "https://github.com/AbdelRMB/sae-starwars",
             website: "https://orbit.abdelrahimriche.com",
+            screenshots: [],
+            actions: [],
+            resultat: "",
+            challenges: [],
+            apprentissages: [],
         },
         {
             id: 2,
@@ -47,6 +52,11 @@ export const projectData = {
             ],
             github: "https://github.com/AbdelRMB/bot-discord",
             website: null,
+            screenshots: [],
+            actions: [],
+            resultat: "",
+            challenges: [],
+            apprentissages: [],
         },
         {
             id: 3,
@@ -65,6 +75,11 @@ export const projectData = {
             ],
             github: "https://github.com/AbdelRMB/AbdelRMBUI",
             website: null,
+            screenshots: [],
+            actions: [],
+            resultat: "",
+            challenges: [],
+            apprentissages: [],
         },
         {
             id: 4,
@@ -83,6 +98,11 @@ export const projectData = {
             ],
             github: "https://github.com/AbdelRMB/AbdelRMB-Notify",
             website: null,
+            screenshots: [],
+            actions: [],
+            resultat: "",
+            challenges: [],
+            apprentissages: [],
         },
         {
             id: 5,
@@ -102,6 +122,11 @@ export const projectData = {
             ],
             github: "https://github.com/AbdelRMB/AbdelRMB-Bennysjob",
             website: null,
+            screenshots: [],
+            actions: [],
+            resultat: "",
+            challenges: [],
+            apprentissages: [],
         },
         {
             id: 6,
@@ -121,6 +146,11 @@ export const projectData = {
             ],
             github: "https://github.com/AbdelRMB/AbdelRMB_F5Menu",
             website: null,
+            screenshots: [],
+            actions: [],
+            resultat: "",
+            challenges: [],
+            apprentissages: [],
         },
         {
             id: 7,
@@ -140,6 +170,11 @@ export const projectData = {
             ],
             github: "https://github.com/AbdelRMB/MenuReport",
             website: null,
+            screenshots: [],
+            actions: [],
+            resultat: "",
+            challenges: [],
+            apprentissages: [],
         },
         {
             id: 8,
@@ -160,6 +195,11 @@ export const projectData = {
             ],
             github: null,
             website: "https://prestigesparis.com",
+            screenshots: [],
+            actions: [],
+            resultat: "",
+            challenges: [],
+            apprentissages: [],
         },
         {
             id: 9,
@@ -180,6 +220,11 @@ export const projectData = {
             ],
             github: "https://github.com/AbdelRMB/unesco",
             website: "https://unesco.abdelrahimriche.com",
+            screenshots: [],
+            actions: [],
+            resultat: "",
+            challenges: [],
+            apprentissages: [],
         },
         {
             id: 10,
@@ -198,6 +243,11 @@ export const projectData = {
             ],
             github: "https://github.com/AbdelRMB/bot-chat",
             website: "https://chat-bot.abdelrahimriche.com",
+            screenshots: [],
+            actions: [],
+            resultat: "",
+            challenges: [],
+            apprentissages: [],
         },
         {
             id: 11,
@@ -218,6 +268,11 @@ export const projectData = {
             ],
             github: null,
             website: "https://banque.abdelrahimriche.com",
+            screenshots: [],
+            actions: [],
+            resultat: "",
+            challenges: [],
+            apprentissages: [],
         },
         {
             id: 12,
@@ -234,6 +289,11 @@ export const projectData = {
             ],
             github: null,
             website: null,
+            screenshots: [],
+            actions: [],
+            resultat: "",
+            challenges: [],
+            apprentissages: [],
         },
         {
             id: 13,
@@ -256,6 +316,11 @@ export const projectData = {
             ],
             github: null,
             website: "https://wikigame.abdelrahimriche.com",
+            screenshots: [],
+            actions: [],
+            resultat: "",
+            challenges: [],
+            apprentissages: [],
         },
         {
             id: 14,
@@ -266,7 +331,8 @@ export const projectData = {
             spécialité: "Web",
             version: "v1.0",
             description:
-                "Refonte plus développement total d'un site internet pour l'entreprise still-link.",
+                "Refonte complète du site web de l’entreprise Still Link, passant de l'outil Odoo au code a un site coder, visant à moderniser l’image de l’entreprise, améliorer l’expérience utilisateur, et mettre enavant leurs services Internet, téléphonie, mobile et sécurité de manière plus attractive.",
+            situation: "Le site internet historique de Still Link était devenu obsolète en termes de design et de fonctionnalités. Il peinait à mettre en valeur les services proposés et n’offrait pas une navigation optimale, en particulier sur mobile, ce qui nuisait à l’image de marque.",
             tags: [
                 "HTML",
                 "JavaScript",
@@ -277,6 +343,36 @@ export const projectData = {
             ],
             github: null,
             website: "https://www.still-link.com",
+            screenshots: [
+                { src: '/assets/images/stilllink/acc_old.png', title: "Ancienne page d'accueil", alt: "Ancienne page d'accueil" },
+                { src: '/assets/images/stilllink/still-link.png', title: "Nouvelle page d'accueil", alt: "Nouvelle page d'accueil" },
+                { src: '/assets/images/stilllink/old_forfait_mobile.png', title: "Ancienne page forfait mobile", alt: "Ancienne page forfait mobile" },
+                { src: '/assets/images/stilllink/forfait_mobile.png', title: "Nouvelle page forfait mobile", alt: "Nouvelle page forfait mobile" },
+                { src: '/assets/images/stilllink/old_formulaire_contact.png', title: "Ancien formulaire de contact", alt: "Ancien formulaire de contact" },
+                { src: '/assets/images/stilllink/formulaire_contact.png', title: "Nouveau formulaire de contact", alt: "Nouveau formulaire de contact" }
+            ],
+            actions: [
+                { description: "Conception d'une nouvelle architecture du site basée sur Vue et Vite.js" },
+                { description: "Création d'une interface utilisateur moderne et responsive, optimisée pour le mobile" },
+                { description: "Intégration de fonctionnalités avancées pour améliorer l'expérience utilisateur" },
+                { description: "Mise en place d'un système de gestion de contenu pour faciliter les mises à jour futures" },
+                { description: "Optimisation du référencement naturel (SEO) pour améliorer la visibilité en ligne" },
+                { description: "Tests approfondis pour garantir la performance et la sécurité du site" }
+            ],
+            resultat: "Le nouveau site a revitalisé l'image de Still Link avec un design professionnel et engageant, une navigation améliorée et de meilleures performances mobiles.",
+            challenges: [
+                { description: "Maintenir la cohérence graphique sur tous les appareils" },
+                { description: "Équilibrer animations modernes et rapidité du site" },
+                { description: "Optimiser le SEO avec Vue" },
+                { description: "Anticiper les ajouts futurs de contenu" },
+            ],
+            apprentissages: [
+                { description: "Approfondissement de mes compétences en développement front-end avec Vue et Vite.js" },
+                { description: "Compréhension des enjeux de l'UX/UI design dans le développement web" },
+                { description: "Gestion de projet et collaboration avec une équipe pour atteindre des objectifs communs" },
+                { description: "Importance du SEO dans la visibilité d'un site web" },
+                { description: "Intégration de fonctionnalités avancées pour améliorer l'expérience utilisateur" },
+            ]
         },
     ],
     filters: [
