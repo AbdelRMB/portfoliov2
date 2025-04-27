@@ -57,6 +57,9 @@
                         class="icon-link">
                         <i class="devicon-firefox-plain"></i>
                     </a>
+                    <router-link :to="`/project/${slugify(project.title)}`" class="icon-link fiche-link">
+                        Voir la fiche
+                    </router-link>                    
                 </div>
             </div>
         </div>
@@ -88,6 +91,16 @@ export default {
             const maxLength = 100;
             return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
         },
+        slugify(text) {
+            return text
+                .toString()
+                .toLowerCase()
+                .replace(/\s+/g, '-')
+                .replace(/[^\w\-]+/g, '')
+                .replace(/\-\-+/g, '-')
+                .replace(/^-+/, '')
+                .replace(/-+$/, '');
+        }
     },
     computed: {
         filteredProjects() {
@@ -126,6 +139,13 @@ export default {
 </script>
 
 <style scoped>
+.fiche-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem !important;
+}
+
 .projects-stats {
     display: flex;
     justify-content: center;
