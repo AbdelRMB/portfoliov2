@@ -276,7 +276,7 @@ export const projectData = {
                 "Vite",
             ],
             github: null,
-            website: "still-link.com",
+            website: "https://www.still-link.com",
         },
     ],
     filters: [
