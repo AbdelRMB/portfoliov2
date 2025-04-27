@@ -4,6 +4,7 @@ import wikigame from "/assets/images/wikigame.png";
 import prestigesparis from "/assets/images/prestigesparis.png";
 import orbit from "/assets/images/orbit.png";
 import discord from "/assets/images/discord.png";
+import stilllink from "/assets/images/still-link.png";
 
 export const projectData = {
     projects: [
@@ -143,7 +144,7 @@ export const projectData = {
         {
             id: 8,
             title: "Prestiges Paris Entreprise",
-            status: "En cours",
+            status: "Terminé",
             image: prestigesparis,
             categorie: "Projet Client",
             spécialité: "Web",
@@ -237,7 +238,7 @@ export const projectData = {
         {
             id: 13,
             title: "WikiGame",
-            status: "En cours",
+            status: "Terminé",
             image: wikigame,
             categorie: "Projet Scolaire",
             spécialité: "Web",
@@ -255,6 +256,27 @@ export const projectData = {
             ],
             github: null,
             website: "https://wikigame.abdelrahimriche.com",
+        },
+        {
+            id: 14,
+            title: "Still-Link",
+            status: "En cours",
+            image: stilllink,
+            categorie: "Projet Professionnel",
+            spécialité: "Web",
+            version: "v1.0",
+            description:
+                "Refonte plus développement total d'un site internet pour l'entreprise still-link.",
+            tags: [
+                "HTML",
+                "JavaScript",
+                "CSS",
+                "Vue.TS",
+                "TypeScript",
+                "Vite",
+            ],
+            github: null,
+            website: "still-link.com",
         },
     ],
     filters: [
@@ -286,6 +308,7 @@ export const projectData = {
         C: "tag-c",
         JAVA: "tag-java",
         "Vue.js": "tag-vue",
+        "Vue.TS": "tag-vue",
         "Réseau": "tag-discord",
         TypeScript: "tag-typescript",
         Python: "tag-python",
