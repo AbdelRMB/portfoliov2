@@ -21,8 +21,10 @@
                     <li v-if="project.version" class="fade-in"><strong>Version :</strong> {{ project.version }}</li>
                 </ul>
                 <div class="links fade-in">
-                    <a v-if="project.github" :href="project.github" target="_blank" class="link-button fade-in">Voir GitHub</a>
-                    <a v-if="project.website" :href="project.website" target="_blank" class="link-button fade-in">Voir Site</a>
+                    <a v-if="project.github" :href="project.github" target="_blank" class="link-button fade-in">Voir
+                        GitHub</a>
+                    <a v-if="project.website" :href="project.website" target="_blank" class="link-button fade-in">Voir
+                        Site</a>
                 </div>
             </div>
 
@@ -102,8 +104,13 @@ export default {
         };
     },
     created() {
-        const titleParam = this.$route.params.title; // récupère directement 'still-link'
+        const titleParam = this.$route.params.title;
         this.project = projectData.projects.find(p => this.slugify(p.title) === titleParam);
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'  // Animation douce
+        });
     },
     methods: {
         openPopup(image) {
