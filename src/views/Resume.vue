@@ -66,7 +66,8 @@
                 </div>
             </div>
             <div v-if="activeSection === 4" class="about fade-in" style="--delay: 1;">
-                <p class="fade-in" style="--delay: 2;">{{ aboutTextCitation }} <i>- Jean Dion / Le Devoir - 10 Mai 1997</i></p>
+                <p class="fade-in" style="--delay: 2;">{{ aboutTextCitation }} <i>- Jean Dion / Le Devoir - 10 Mai
+                        1997</i></p>
                 <p class="fade-in" style="--delay: 3;">{{ aboutText }}</p>
                 <ul class="about-list">
                     <li v-for="(item, index) in aboutPoints" :key="index" class="fade-in"
@@ -255,6 +256,33 @@ export default {
     position: relative;
     padding-left: 30px;
     border-left: 2px solid #4d004d;
+    height: 600px;
+    overflow-y: auto;
+}
+
+.timeline::-webkit-scrollbar {
+    width: 8px;
+}
+
+.timeline::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 10px 0;
+}
+
+.timeline::-webkit-scrollbar-thumb {
+    background-color: #ff80ab;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.timeline::-webkit-scrollbar-thumb:hover {
+    background-color: #ff4d94;
+}
+
+/* Pour Firefox */
+.timeline {
+    scrollbar-width: thin;
+    scrollbar-color: #ff80ab transparent;
 }
 
 .timeline-item {
@@ -359,38 +387,73 @@ export default {
     color: #cccccc;
 }
 
+/* Nouvelle barre de navigation */
 .resume-buttons {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    background-color: #2a002a;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #4d004d;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
+/* Nouveau style pour les boutons */
 .resume-button {
     display: flex;
     align-items: center;
-    gap: 10px;
-    background-color: #2a002a;
-    border: 1px solid #4d004d;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #ffffff;
-    border-radius: 5px;
+    gap: 12px;
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: #cccccc;
+    padding: 12px 20px;
+    border-radius: 8px;
+    transition: background-color 0.4s ease, transform 0.3s ease, color 0.3s ease;
+    position: relative;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    overflow: hidden;
 }
 
+/* Animation de survol */
+.resume-button::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #ff80ab;
+    transition: width 0.4s ease;
+    z-index: -1;
+}
+
+.resume-button:hover::after {
+    width: 100%;
+}
+
+.resume-button:hover {
+    color: #1d001d;
+    transform: translateX(5px);
+}
+
+/* Quand bouton actif */
 .resume-button.active {
     background-color: #ff80ab;
     color: #1d001d;
 }
 
-.resume-button i {
-    font-size: 18px;
+.resume-button.active::after {
+    width: 100%;
 }
 
-.resume-button:hover {
-    background-color: #ff80ab;
+/* Icônes */
+.resume-button i {
+    font-size: 20px;
 }
+
 
 /* Colonne de droite */
 .resume-content {
