@@ -345,7 +345,7 @@ export const projectData = {
                 "Node.js",
                 "Python",
             ],
-            github: null,
+            github: "https://github.com/AbdelRMB/wikigame",
             website: "https://wikigame.abdelrahimriche.com",
             screenshots: [],
             actions: [],
