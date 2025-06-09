@@ -405,6 +405,87 @@ export const projectData = {
                 { description: "Intégration de fonctionnalités avancées pour améliorer l'expérience utilisateur" },
             ]
         },
+        {
+            id: 15,
+            title: "Template Boutique GTA RP",
+            status: "Terminé",
+            image: botdiscord,
+            categorie: "Projet Perso",
+            spécialité: "Web",
+            version: "v1.0",
+            description:
+                "Template de site e-commerce inspiré de Tebex, conçu pour les serveurs GTA RP. Cette interface frontend moderne permet de présenter des packs, véhicules, grades ou services à vendre. Bien qu’aucun backend ne soit connecté, le design est entièrement responsive et pensé pour une intégration facile avec un futur système de paiement ou une API FiveM.",
+            tags: [
+                "HTML",
+                "CSS",
+                "TypeScript",
+                "Rract.TS",
+                "Tailwind CSS"
+            ],
+            github: null,
+            website: "https://tebex.abdelrahimriche.com",
+            screenshots: [],
+            actions: [
+                { description: "Conception d'une interface utilisateur inspirée de Tebex" },
+                { description: "Utilisation de Tailwind CSS pour une mise en page rapide et moderne" },
+                { description: "Création de composants Vue réutilisables pour les articles et paniers" },
+                { description: "Responsive design pour une expérience fluide sur mobile et PC" },
+            ],
+            resultat: "Un template moderne prêt à être connecté à une API ou une solution de paiement pour les serveurs GTA RP.",
+            challenges: [
+                { description: "Créer une interface professionnelle sans backend" },
+                { description: "Reproduire les codes UX/UI d’une boutique type Tebex" },
+                { description: "Anticiper les besoins futurs d'intégration serveur" },
+            ],
+            apprentissages: [
+                { description: "Renforcement des compétences en design responsive avec Tailwind" },
+                { description: "Structuration d’un projet React.TS sans backend" },
+                { description: "Préparation d’un template pour une potentielle extension backend/API" },
+            ],
+        },
+        {
+            id: 16,
+            title: "Photographie Pro - Site Vitrine",
+            status: "Terminé",
+            image: prestigesparis, // tu peux changer pour une image dédiée à ce projet si tu en as une
+            categorie: "Projet Pro",
+            spécialité: "Web",
+            version: "v1.0",
+            description:
+                "Création d’un site vitrine moderne et responsive en React TypeScript pour une entreprise spécialisée en photographie événementielle, mariage et corporate. Le site permet de valoriser les prestations, d’afficher un portfolio dynamique, de publier des articles et de faciliter la prise de contact.",
+            tags: [
+                "React",
+                "TypeScript",
+                "Tailwind CSS",
+                "Strapi",
+                "HTML",
+                "CSS",
+                "SEO",
+            ],
+            github: null, // ou ton lien Git si public
+            website: "https://photographe.abdelrahimriche.com", // remplace ou mets null
+            screenshots: [], // ajoute si tu veux une visionneuse
+            actions: [
+                { description: "Développement d’un site en React + TypeScript avec une architecture modulaire" },
+                { description: "Connexion à un CMS headless (Strapi) pour la gestion autonome des contenus" },
+                { description: "Intégration d’un portfolio dynamique avec filtres par catégorie et visionneuse" },
+                { description: "Ajout d’un formulaire de contact avec notifications email" },
+                { description: "Mise en place d’un blog/actualités administrable via le CMS" },
+                { description: "Respect du responsive design sur mobile/tablette/PC" },
+                { description: "Optimisation SEO technique (balises, sitemap, performances)" },
+            ],
+            resultat: "Le site a permis de valoriser l’expertise du photographe, d’augmenter la prise de contact client et d’offrir une gestion simplifiée du contenu via une interface d’administration moderne.",
+            challenges: [
+                { description: "Création d’une galerie performante avec lazy loading et filtres" },
+                { description: "Intégration d’un CMS sans compromettre les performances frontend" },
+                { description: "Respect du RGPD (mentions légales, cookies)" },
+            ],
+            apprentissages: [
+                { description: "Maîtrise de l’intégration d’un CMS headless avec React" },
+                { description: "Optimisation avancée des performances web" },
+                { description: "Mise en œuvre des bonnes pratiques SEO et accessibilité (WCAG)" },
+            ],
+        },
     ],
     filters: [
         { label: "Tous", value: "all" },
