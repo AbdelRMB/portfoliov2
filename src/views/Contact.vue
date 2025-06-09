@@ -46,7 +46,7 @@ export default {
     methods: {
         async handleSubmit() {
             try {
-                const response = await axios.post('http://sendmail.abdelrahimriche.com/send-email', this.formData);
+                const response = await axios.post('https://sendmail.abdelrahimriche.com/send-email', this.formData);
 
                 if (response.data.success) {
                     this.statusMessage = 'Votre message a été envoyé avec succès !';
