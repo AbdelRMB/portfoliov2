@@ -118,6 +118,17 @@ export default {
             Vite: "tag-green",
             Strapi: "tag-purple",
             SEO: "tag-indigo",
+            "Angular": "tag-blue",
+            "Java": "tag-java",
+            "Laravel": "tag-laravel",
+            "Spring Boot": "tag-spring-boot",
+            "Spring": "tag-spring",
+            "GitHub": "tag-github",
+            "Git": "tag-git",
+            "Docker": "tag-docker",
+            "Kubernetes": "tag-kubernetes",
+            "MySQL": "tag-mysql",
+            "MongoDB": "tag-green",
         });
 
         // Computed properties
@@ -229,6 +240,61 @@ export default {
 </script>
 
 <style scoped>
+.tag-mysql {
+    background-color: rgba(112, 0, 112, 0.8) !important;
+    border: 1px solid #700070;
+}
+
+.tag-git{
+    background-color: rgba(68, 68, 68, 0.8) !important;
+    border: 1px solid #444444;
+    color: #ffffff !important;
+}
+
+.tag-angular {
+    background-color: rgba(0, 134, 78, 0.8) !important;
+    border: 1px solid #00864e;
+}
+
+.tag-java {
+    background-color: rgba(248, 152, 32, 0.8) !important;
+    border: 1px solid #f89820;
+    color: #1a1a1a !important;
+}
+
+.tag-laravel {
+    background-color: rgba(229, 62, 62, 0.8) !important;
+    border: 1px solid #e53e3e;
+}
+
+.tag-spring {
+    background-color: rgba(72, 187, 120, 0.8) !important;
+    border: 1px solid #48bb78;
+}
+
+.tag-spring-boot {
+    background-color: rgba(72, 187, 120, 0.8) !important;
+    border: 1px solid #48bb78;
+}
+
+.tag-github {
+    background-color: rgba(68, 68, 68, 0.8) !important;
+    border: 1px solid #444444;
+    color: #ffffff !important;
+}
+
+.tag-docker {
+    background-color: rgba(68, 68, 68, 0.8) !important;
+    border: 1px solid #444444;
+    color: #ffffff !important;
+}
+
+.tag-kubernetes {
+    background-color: rgba(68, 68, 68, 0.8) !important;
+    border: 1px solid #444444;
+    color: #ffffff !important;
+}
+
 .fiche-link {
     display: flex;
     justify-content: center;
