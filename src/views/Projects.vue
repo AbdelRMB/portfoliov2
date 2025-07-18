@@ -67,73 +67,141 @@
 </template>
 
 <script>
-import { projectData } from '@/data/project_data';
+import { ref, computed, onMounted } from 'vue';
+import { projectsService } from '@/services/projectsService';
 
 export default {
     name: "Projects",
-    data() {
-        return {
-            ...projectData,
-            activeFilter: "all",
+    setup() {
+        const projects = ref([]);
+        const loading = ref(false);
+        const error = ref('');
+        const activeFilter = ref("all");
+        
+        const filters = ref([
+            { label: "Tous", value: "all" },
+            { label: "Scolaire", value: "Projet Scolaire" },
+            { label: "Client", value: "Projet Client" },
+            { label: "Perso", value: "Projet Perso" },
+        ]);
+
+        const tagColors = ref({
+            JavaScript: "tag-yellow",
+            React: "tag-react",
+            "NextJs": "tag-purple",
+            "Tailwind CSS": "tag-teal",
+            "Redux Toolkit": "tag-red",
+            Stripe: "tag-green",
+            "ShadCN UI": "tag-pink",
+            Recharts: "tag-orange",
+            "React-PDF": "tag-cyan",
+            Cryptomonnaie: "tag-gold",
+            Zod: "tag-indigo",
+            "Next Auth": "tag-lightblue",
+            "Discord.js": "tag-discord",
+            "Node.js": "tag-node",
+            Lua: "tag-lua",
+            HTML: "tag-orange",
+            CSS: "tag-css",
+            PHP: "tag-php",
+            SQL: "tag-sql",
+            C: "tag-c",
+            JAVA: "tag-java",
+            "Vue.js": "tag-vue",
+            "Vue.TS": "tag-vue",
+            "Réseau": "tag-discord",
+            TypeScript: "tag-typescript",
+            Python: "tag-python",
+        });
+
+        // Computed properties
+        const filteredProjects = computed(() => {
+            if (activeFilter.value === "all") {
+                return projects.value.filter(project => project.isVisible);
+            }
+            return projects.value.filter(project => 
+                project.categorie === activeFilter.value && project.isVisible
+            );
+        });
+
+        const totalProjects = computed(() => projects.value.filter(p => p.isVisible).length);
+        const completedProjects = computed(() => 
+            projects.value.filter(p => p.status === "Terminé" && p.isVisible).length
+        );
+        const inProgressProjects = computed(() => 
+            projects.value.filter(p => p.status === "En cours" && p.isVisible).length
+        );
+
+        // Methods
+        const fetchProjects = async () => {
+            loading.value = true;
+            try {
+                const response = await projectsService.getProjects({ visible: true });
+                if (response.success) {
+                    projects.value = response.data.map(project => ({
+                        ...project,
+                        showFullDescription: false,
+                        spécialité: project.specialite // Adapter le nom du champ
+                    }));
+                } else {
+                    error.value = response.message || 'Erreur lors du chargement des projets';
+                }
+            } catch (err) {
+                error.value = 'Erreur de connexion';
+                console.error(err);
+            } finally {
+                loading.value = false;
+            }
         };
-    },
-    methods: {
-        getTagClass(tag) {
-            return this.tagColors[tag] || "tag-default";
-        },
-        setFilter(filter) {
-            this.activeFilter = filter;
-        },
-        toggleDescription(project) {
+
+        const setFilter = (filter) => {
+            activeFilter.value = filter;
+        };
+
+        const toggleDescription = (project) => {
             project.showFullDescription = !project.showFullDescription;
-        },
-        truncatedText(text) {
-            const maxLength = 100;
-            return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
-        },
-        slugify(text) {
+        };
+
+        const truncatedText = (text) => {
+            const maxLength = 200;
+            return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
+        };
+
+        const getTagClass = (tag) => {
+            return tagColors.value[tag] || "tag-default";
+        };
+
+        const slugify = (text) => {
             return text
                 .toString()
                 .toLowerCase()
+                .trim()
                 .replace(/\s+/g, '-')
                 .replace(/[^\w\-]+/g, '')
                 .replace(/\-\-+/g, '-')
                 .replace(/^-+/, '')
                 .replace(/-+$/, '');
-        }
-    },
-    computed: {
-        filteredProjects() {
-            return this.projects.filter((project) =>
-                this.activeFilter === 'all' ||
-                project.status === this.activeFilter ||
-                project.categorie === this.activeFilter
-            ).sort((a, b) => {
-                if (a.status === 'En cours' && b.status !== 'En cours') {
-                    return -1; // Mettre 'En cours' avant les autres
-                } else if (a.status !== 'En cours' && b.status === 'En cours') {
-                    return 1; // Mettre 'En cours' après les autres
-                }
-                return 0; // Garder l'ordre original si les deux projets ont le même statut
-            });
-        },
-        totalProjects() {
-            return this.projects.length;
-        },
-        completedProjects() {
-            return this.projects.filter(project => project.status === 'Terminé').length;
-        },
-        inProgressProjects() {
-            return this.projects.filter(project => project.status === 'En cours').length;
-        }
-    },
-    created() {
-        const statusFilters = ['Terminé', 'En cours'];
-        statusFilters.forEach(status => {
-            if (!this.filters.find(filter => filter.value === status)) {
-                this.filters.push({ label: status, value: status });
-            }
-        });
+        };
+
+        onMounted(fetchProjects);
+
+        return {
+            projects,
+            loading,
+            error,
+            activeFilter,
+            filters,
+            tagColors,
+            filteredProjects,
+            totalProjects,
+            completedProjects,
+            inProgressProjects,
+            setFilter,
+            toggleDescription,
+            truncatedText,
+            getTagClass,
+            slugify
+        };
     }
 };
 </script>

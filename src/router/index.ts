@@ -1,5 +1,6 @@
 import StillLink from '@/projectPage/StillLink.vue'
 import AddProject from '@/views/AddProject.vue'
+import AdminProjects from '@/views/AdminProjects.vue'
 import Contact from '@/views/Contact.vue'
 import Home from '@/views/Home.vue'
 import Projects from '@/views/Projects.vue'
@@ -39,7 +40,12 @@ const router = createRouter({
       path: '/addproject',
       name: 'addproject',
       component: AddProject
-    }, 
+    },
+    {
+      path: '/admin/projects',
+      name: 'AdminProjects',
+      component: AdminProjects
+    },
     {
       path: '/project/:title',
       name: 'ProjectDetail',
