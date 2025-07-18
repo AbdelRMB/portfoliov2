@@ -74,7 +74,7 @@ const projectsData = [
   },
   {
     title: "Lib UI",
-    image: "/assets/images/bot-discord.png",
+    image: "/assets/dev.jpg",
     categorie: "Projet Perso",
     specialite: "FiveM",
     status: "Terminé",
@@ -93,7 +93,7 @@ const projectsData = [
   },
   {
     title: "Lib Notif",
-    image: "/assets/images/bot-discord.png",
+    image: "/assets/dev.jpg",
     categorie: "Projet Perso",
     specialite: "FiveM",
     status: "Terminé",
@@ -112,7 +112,7 @@ const projectsData = [
   },
   {
     title: "Benny's Job",
-    image: "/assets/images/bot-discord.png",
+    image: "/assets/dev.jpg",
     categorie: "Projet Perso",
     specialite: "FiveM",
     status: "Terminé",
@@ -131,7 +131,7 @@ const projectsData = [
   },
   {
     title: "F5 Menu",
-    image: "/assets/images/bot-discord.png",
+    image: "/assets/dev.jpg",
     categorie: "Projet Client",
     specialite: "FiveM",
     status: "Terminé",
@@ -150,7 +150,7 @@ const projectsData = [
   },
   {
     title: "Menu Report",
-    image: "/assets/images/bot-discord.png",
+    image: "/assets/dev.jpg",
     categorie: "Projet Perso",
     specialite: "FiveM",
     status: "Terminé",
@@ -188,7 +188,7 @@ const projectsData = [
   },
   {
     title: "UNESCO",
-    image: "/assets/images/bot-discord.png",
+    image: "/assets/dev.jpg",
     categorie: "Projet Scolaire",
     specialite: "Web",
     status: "Terminé",
@@ -207,7 +207,7 @@ const projectsData = [
   },
   {
     title: "Chat Bot",
-    image: "/assets/images/bot-discord.png",
+    image: "/assets/dev.jpg",
     categorie: "Projet Client",
     specialite: "Web",
     status: "Terminé",
@@ -226,7 +226,7 @@ const projectsData = [
   },
   {
     title: "Banque site",
-    image: "/assets/images/bot-discord.png",
+    image: "/assets/dev.jpg",
     categorie: "Projet Scolaire",
     specialite: "Web",
     status: "Terminé",
@@ -245,7 +245,7 @@ const projectsData = [
   },
   {
     title: "Hébergement WEB",
-    image: "/assets/images/bot-discord.png",
+    image: "/assets/dev.jpg",
     categorie: "Projet Perso",
     specialite: "Réseau",
     status: "Terminé",
@@ -327,7 +327,7 @@ const projectsData = [
   },
   {
     title: "Template Boutique GTA RP",
-    image: "/assets/images/bot-discord.png",
+    image: "/assets/dev.jpg",
     categorie: "Projet Perso",
     specialite: "Web",
     status: "Terminé",
@@ -359,7 +359,7 @@ const projectsData = [
   },
   {
     title: "Photographie Pro - Site Vitrine",
-    image: "/assets/images/prestigesparis.png",
+    image: "/assets/dev.jpg",
     categorie: "Projet Pro",
     specialite: "Web",
     status: "Terminé",
@@ -394,7 +394,7 @@ const projectsData = [
   },
   {
     title: "Remind Payment",
-    image: "/assets/images/bot-discord.png",
+    image: "/assets/dev.jpg",
     categorie: "Projet Perso",
     specialite: "Web",
     status: "Terminé",
