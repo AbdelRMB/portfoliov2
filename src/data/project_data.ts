@@ -486,6 +486,50 @@ export const projectData = {
                 { description: "Mise en œuvre des bonnes pratiques SEO et accessibilité (WCAG)" },
             ],
         },
+        {
+            id: 17,
+            title: "Remind Payment",
+            status: "Terminé",
+            image: botdiscord, // tu peux changer pour une image dédiée à ce projet si tu en as une
+            categorie: "Projet Perso",
+            spécialité: "Web",
+            version: "v1.0",
+            description:
+                "Création d'un site web permettant de se donner un appercu général des abonnements.",
+            tags: [
+                "React",
+                "JavaScript",
+                "Tailwind CSS",
+                "HTML",
+                "CSS",
+                "TypeScript",
+                "Node.js",
+            ],
+            github: null, 
+            website: "https://abonnement.abdelrahimriche.com", 
+            screenshots: [], 
+            actions: [
+                { description: "Développement d’un site en React + JavaScript avec une architecture modulaire" },
+                { description: "Intégration d'une interface utilisateur moderne et responsive, optimisée pour le mobile" },
+                { description: "Création d'un système de gestion des abonnements" },
+                { description: "Mise en place d'un système de notifications pour les rappels de paiement" },
+                { description: "Optimisation du référencement naturel (SEO) pour améliorer la visibilité en ligne" },
+                { description: "Tests approfondis pour garantir la performance et la sécurité du site" }
+            ],
+            resultat: "Le site a permis de gérer efficacement les abonnements et de recevoir des rappels de paiement, améliorant ainsi la gestion financière personnelle.",
+            challenges: [
+                { description: "Maintenir la cohérence graphique sur tous les appareils" },
+                { description: "Équilibrer animations modernes et rapidité du site" },
+                { description: "Anticiper les ajouts futurs de contenu" },
+            ],
+            apprentissages: [
+                { description: "Approfondissement de mes compétences en développement web avec React et JavaScript" },
+                { description: "Compréhension des enjeux de l'UX/UI design dans le développement web" },
+                { description: "Gestion de projet et collaboration avec une équipe pour atteindre des objectifs communs" },
+                { description: "Importance du SEO dans la visibilité d'un site web" },
+                { description: "Intégration de fonctionnalités avancées pour améliorer l'expérience utilisateur" },
+            ],
+        },
     ],
     filters: [
         { label: "Tous", value: "all" },

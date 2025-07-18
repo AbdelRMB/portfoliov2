@@ -129,6 +129,11 @@ export default {
                 { id: 25, name: "Linux", icon: "devicon-linux-plain" },
                 { id: 26, name: "MariaDB", icon: "devicon-mariadb-plain" },
                 { id: 27, name: "PHPStorm", icon: "devicon-phpstorm-plain" },
+                { id: 28, name: "Visual Studio Code", icon: "devicon-vscode-plain" },
+                { id: 29, name: "Postman", icon: "devicon-postman-plain" },
+                { id: 30, name: "Strapi", icon: "devicon-strapi-plain" },
+                { id: 31, name: "Bootstrap", icon: "devicon-bootstrap-plain" },
+                { id: 32, name: "Sass", icon: "devicon-sass-original" },
             ],
             experiences: [
                 {
