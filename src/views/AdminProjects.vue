@@ -359,7 +359,7 @@ export default {
     }
 
     // API calls
-    const apiUrl = 'http://localhost:3001/api/projects'
+    const apiUrl = 'https://api.abdelrahimriche.com/api/projects'
 
     const fetchProjects = async () => {
       loading.value = true
