@@ -367,7 +367,23 @@ export default {
         const response = await fetch(apiUrl)
         const data = await response.json()
         if (data.success) {
-          projects.value = data.data
+          // Parser les tags JSON pour chaque projet
+          projects.value = data.data.map(project => {
+            let parsedTags = project.tags;
+            if (typeof project.tags === 'string') {
+              try {
+                parsedTags = JSON.parse(project.tags);
+              } catch (error) {
+                console.error('Erreur parsing tags:', error, 'pour le projet:', project.title);
+                parsedTags = [];
+              }
+            }
+            
+            return {
+              ...project,
+              tags: parsedTags
+            };
+          });
         } else {
           error.value = data.message
         }
