@@ -307,7 +307,8 @@ export default {
       { name: 'WikiGame', path: '/assets/images/wikigame.png' },
       { name: 'Prestiges Paris', path: '/assets/images/prestigesparis.png' },
       { name: 'Still Link', path: '/assets/images/stilllink/still-link.png' },
-      { name: 'Bot Discord', path: '/assets/images/bot-discord.png' }
+      { name: 'Bot Discord', path: '/assets/images/bot-discord.png' },
+      { name: 'Default', path: '/assets/dev.jpg' },
     ])
     
     const currentProject = reactive({
@@ -358,7 +359,7 @@ export default {
     }
 
     // API calls
-    const apiUrl = 'http://localhost:3001/api/projects'
+    const apiUrl = 'https://api.abdelrahimriche.com/api/projects'
 
     const fetchProjects = async () => {
       loading.value = true
@@ -366,7 +367,23 @@ export default {
         const response = await fetch(apiUrl)
         const data = await response.json()
         if (data.success) {
-          projects.value = data.data
+          // Parser les tags JSON pour chaque projet
+          projects.value = data.data.map(project => {
+            let parsedTags = project.tags;
+            if (typeof project.tags === 'string') {
+              try {
+                parsedTags = JSON.parse(project.tags);
+              } catch (error) {
+                console.error('Erreur parsing tags:', error, 'pour le projet:', project.title);
+                parsedTags = [];
+              }
+            }
+            
+            return {
+              ...project,
+              tags: parsedTags
+            };
+          });
         } else {
           error.value = data.message
         }
@@ -409,7 +426,22 @@ export default {
 
     const editProject = (project) => {
       editingProject.value = project
-      Object.assign(currentProject, project)
+      
+      // Parser les tags si c'est une string JSON
+      let parsedTags = project.tags;
+      if (typeof project.tags === 'string') {
+        try {
+          parsedTags = JSON.parse(project.tags);
+        } catch (error) {
+          console.error('Erreur parsing tags:', error);
+          parsedTags = [];
+        }
+      }
+      
+      Object.assign(currentProject, {
+        ...project,
+        tags: parsedTags
+      })
       showAddForm.value = true
     }
 

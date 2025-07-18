@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:3001/api'
+const API_BASE_URL = 'https://api.abdelrahimriche.com/api'
 
 export interface Project {
   id?: number

@@ -72,7 +72,7 @@ import { projectsService } from '@/services/projectsService';
 
 export default {
     name: "Projects",
-    setup() {
+    setup() { 
         const projects = ref([]);
         const loading = ref(false);
         const error = ref('');
@@ -83,11 +83,14 @@ export default {
             { label: "Scolaire", value: "Projet Scolaire" },
             { label: "Client", value: "Projet Client" },
             { label: "Perso", value: "Projet Perso" },
+            { label: "Professionnel", value: "Projet Professionnel" },
+            { label: "Pro", value: "Projet Pro" },
         ]);
 
         const tagColors = ref({
             JavaScript: "tag-yellow",
             React: "tag-react",
+            "React.TS": "tag-react",
             "NextJs": "tag-purple",
             "Tailwind CSS": "tag-teal",
             "Redux Toolkit": "tag-red",
@@ -112,6 +115,9 @@ export default {
             "Réseau": "tag-discord",
             TypeScript: "tag-typescript",
             Python: "tag-python",
+            Vite: "tag-green",
+            Strapi: "tag-purple",
+            SEO: "tag-indigo",
         });
 
         // Computed properties
@@ -138,11 +144,27 @@ export default {
             try {
                 const response = await projectsService.getProjects({ visible: true });
                 if (response.success) {
-                    projects.value = response.data.map(project => ({
-                        ...project,
-                        showFullDescription: false,
-                        spécialité: project.specialite // Adapter le nom du champ
-                    }));
+                    console.log('Projets reçus de l\'API:', response.data);
+                    projects.value = response.data.map(project => {
+                        // Parser les tags si c'est une string JSON
+                        let parsedTags = project.tags;
+                        if (typeof project.tags === 'string') {
+                            try {
+                                parsedTags = JSON.parse(project.tags);
+                            } catch (error) {
+                                console.error('Erreur parsing tags:', error, 'pour le projet:', project.title);
+                                parsedTags = [];
+                            }
+                        }
+                        
+                        console.log('Tags parsés du projet', project.title, ':', parsedTags);
+                        return {
+                            ...project,
+                            tags: parsedTags,
+                            showFullDescription: false,
+                            spécialité: project.specialite // Adapter le nom du champ
+                        };
+                    });
                 } else {
                     error.value = response.message || 'Erreur lors du chargement des projets';
                 }
@@ -289,24 +311,6 @@ export default {
     display: inline-block;
 }
 
-.tag-typescript {
-    color: #fff;
-    background-color: #3178c656;
-    border: 1px solid #3178c6;
-}
-
-.tag-react {
-    color: #fff;
-    background-color: #61dafb56;
-    border: 1px solid #61dafb;
-}
-
-.tag-python {
-    color: #fff;
-    background-color: #30699856;
-    border: 1px solid #306998;
-}
-
 .specialite {
     font-size: 12px;
     padding: 5px 10px;
@@ -406,104 +410,145 @@ export default {
     padding: 5px 10px;
     border-radius: 10px;
     font-size: 12px;
-    color: #ffffff;
+    font-weight: 500;
+    color: #ffffff !important;
+    display: inline-block;
+    text-align: center;
+    min-width: fit-content;
+    white-space: nowrap;
+    line-height: 1.2;
 }
 
 .tag-yellow {
-    background-color: #f7de1e56;
+    background-color: rgba(247, 222, 30, 0.8) !important;
     border: 1px solid #f7df1e;
+    color: #1a1a1a !important;
 }
 
 .tag-blue {
-    background-color: #005b7456;
+    background-color: rgba(0, 91, 116, 0.8) !important;
     border: 1px solid #005a74;
 }
 
 .tag-sql {
-    background-color: #70007056;
+    background-color: rgba(112, 0, 112, 0.8) !important;
     border: 1px solid #700070;
 }
 
 .tag-purple {
-    background-color: #6e5cc056;
+    background-color: rgba(110, 92, 192, 0.8) !important;
     border: 1px solid #6e5cc0;
 }
 
 .tag-teal {
-    background-color: #38b2ac;
+    background-color: rgba(56, 178, 172, 0.8) !important;
+    border: 1px solid #38b2ac;
 }
 
 .tag-red {
-    background-color: #e53e3e;
+    background-color: rgba(229, 62, 62, 0.8) !important;
+    border: 1px solid #e53e3e;
 }
 
 .tag-vue {
-    background-color: #00864e56;
+    background-color: rgba(0, 134, 78, 0.8) !important;
     border: 1px solid #00864e;
 }
 
 .tag-c {
-    background-color: #a8b9cc56;
+    background-color: rgba(168, 185, 204, 0.8) !important;
     border: 1px solid #a8b9cc;
+    color: #1a1a1a !important;
 }
 
 .tag-pink {
-    background-color: #ed64a6;
+    background-color: rgba(237, 100, 166, 0.8) !important;
+    border: 1px solid #ed64a6;
 }
 
 .tag-orange {
-    background-color: #f6ae5556;
+    background-color: rgba(246, 173, 85, 0.8) !important;
     border: 1px solid #f6ad55;
+    color: #1a1a1a !important;
 }
 
 .tag-php {
-    background-color: #8892bf56;
+    background-color: rgba(136, 146, 191, 0.8) !important;
     border: 1px solid #8892bf;
 }
 
 .tag-java {
-    background-color: #f8982056;
+    background-color: rgba(248, 152, 32, 0.8) !important;
     border: 1px solid #f89820;
+    color: #1a1a1a !important;
 }
 
 .tag-cyan {
-    background-color: #319795;
+    background-color: rgba(49, 151, 149, 0.8) !important;
+    border: 1px solid #319795;
 }
 
 .tag-gold {
-    background-color: #d4af37;
+    background-color: rgba(212, 175, 55, 0.8) !important;
+    border: 1px solid #d4af37;
+    color: #1a1a1a !important;
 }
 
 .tag-indigo {
-    background-color: #5a67d8;
+    background-color: rgba(90, 103, 216, 0.8) !important;
+    border: 1px solid #5a67d8;
 }
 
 .tag-css {
-    background-color: #5a67d856;
+    background-color: rgba(90, 103, 216, 0.8) !important;
     border: 1px solid #5a67d8;
 }
 
 .tag-lightblue {
-    background-color: #63b3ed;
+    background-color: rgba(99, 179, 237, 0.8) !important;
+    border: 1px solid #63b3ed;
+    color: #1a1a1a !important;
 }
 
 .tag-default {
-    background-color: #444444;
+    background-color: rgba(68, 68, 68, 0.8) !important;
+    border: 1px solid #444444;
 }
 
 .tag-discord {
-    background-color: #7289da56;
+    background-color: rgba(114, 137, 218, 0.8) !important;
     border: 1px solid #7289da;
 }
 
 .tag-lua {
-    background-color: #405bbd56;
+    background-color: rgba(64, 91, 189, 0.8) !important;
     border: 1px solid #2e48a7;
 }
 
 .tag-node {
-    background-color: #68a06356;
+    background-color: rgba(104, 160, 99, 0.8) !important;
     border: 1px solid #68a063;
+}
+
+.tag-typescript {
+    background-color: rgba(49, 120, 198, 0.8) !important;
+    border: 1px solid #3178c6;
+}
+
+.tag-react {
+    background-color: rgba(97, 218, 251, 0.8) !important;
+    border: 1px solid #61dafb;
+    color: #1a1a1a !important;
+}
+
+.tag-python {
+    background-color: rgba(48, 105, 152, 0.8) !important;
+    border: 1px solid #306998;
+}
+
+.tag-green {
+    background-color: rgba(72, 187, 120, 0.8) !important;
+    border: 1px solid #48bb78;
 }
 
 .continue-button:hover {
