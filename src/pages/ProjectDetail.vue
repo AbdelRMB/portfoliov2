@@ -1,6 +1,15 @@
 <template>
     <div class="project-main">
-        <div v-if="project" class="project-details-page">
+        <div v-if="loading" class="loading">
+            <p>Chargement du projet...</p>
+        </div>
+        
+        <div v-else-if="error" class="error">
+            <p>{{ error }}</p>
+            <router-link to="/projects" class="back-link">← Retour aux projets</router-link>
+        </div>
+        
+        <div v-else-if="project" class="project-details-page">
             <router-link to="/projects" class="back-link fade-in">← Retour aux projets</router-link>
             <h1 class="fade-in">{{ project.title }}</h1>
             <h2 class="fade-in">Mission</h2>
@@ -16,7 +25,7 @@
                 <h2 class="fade-in">Informations</h2>
                 <ul class="fade-in">
                     <li class="fade-in"><strong>Catégorie :</strong> {{ project.categorie }}</li>
-                    <li class="fade-in"><strong>Spécialité :</strong> {{ project.spécialité }}</li>
+                    <li class="fade-in"><strong>Spécialité :</strong> {{ project.specialite }}</li>
                     <li class="fade-in"><strong>Status :</strong> {{ project.status }}</li>
                     <li v-if="project.version" class="fade-in"><strong>Version :</strong> {{ project.version }}</li>
                 </ul>
@@ -35,7 +44,7 @@
                 </p>
             </div>
 
-            <div class="project-section fade-in" v-if="project.actions.length">
+            <div class="project-section fade-in" v-if="project.actions && project.actions.length">
                 <h2>Actions</h2>
                 <ul>
                     <li v-for="(action, index) in project.actions" :key="index">
@@ -51,7 +60,7 @@
                 </p>
             </div>
 
-            <div v-if="project.screenshots.length" class="project-section fade-in">
+            <div v-if="project.screenshots && project.screenshots.length" class="project-section fade-in">
                 <h2>Captures d'écran</h2>
                 <div class="screenshots fade-in">
                     <div class="screenshot-item fade-in" v-for="(capture, index) in project.screenshots" :key="index">
@@ -66,7 +75,7 @@
                 <img :src="popupImage" alt="Zoom" class="popup-image" />
             </div>
 
-            <div class="project-section fade-in" v-if="project.challenges.length">
+            <div class="project-section fade-in" v-if="project.challenges && project.challenges.length">
                 <h2>Défis rencontrés</h2>
                 <ul>
                     <li v-for="(challenge, index) in project.challenges" :key="index">
@@ -75,7 +84,7 @@
                 </ul>
             </div>
 
-            <div class="project-section fade-in" v-if="project.apprentissages.length">
+            <div class="project-section fade-in" v-if="project.apprentissages && project.apprentissages.length">
                 <h2>Apprentissages</h2>
                 <ul>
                     <li v-for="(apprentissage, index) in project.apprentissages" :key="index">
@@ -84,15 +93,15 @@
                 </ul>
             </div>
         </div>
+        
         <div v-else>
             <p>Projet introuvable.</p>
+            <router-link to="/projects" class="back-link">← Retour aux projets</router-link>
         </div>
     </div>
 </template>
 
 <script>
-import { projectData } from '@/data/project_data';
-
 export default {
     name: 'ProjectDetail',
     data() {
@@ -100,12 +109,14 @@ export default {
             project: null,
             screenshots: [],
             popupVisible: false,
-            popupImage: ''
+            popupImage: '',
+            loading: true,
+            error: null
         };
     },
-    created() {
+    async created() {
         const titleParam = this.$route.params.title;
-        this.project = projectData.projects.find(p => this.slugify(p.title) === titleParam);
+        await this.fetchProject(titleParam);
 
         window.scrollTo({
             top: 0,
@@ -113,6 +124,100 @@ export default {
         });
     },
     methods: {
+        async fetchProject(titleSlug) {
+            this.loading = true;
+            this.error = null;
+            
+            try {
+                const response = await fetch('https://api.abdelrahimriche.com/api/projects');
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Parser les données JSON pour chaque projet
+                    const projects = data.data.map(project => {
+                        let parsedTags = project.tags;
+                        let parsedScreenshots = project.screenshots;
+                        let parsedActions = project.actions;
+                        let parsedChallenges = project.challenges;
+                        let parsedApprentissages = project.apprentissages;
+                        
+                        // Parser les tags
+                        if (typeof project.tags === 'string') {
+                            try {
+                                parsedTags = JSON.parse(project.tags);
+                            } catch (error) {
+                                console.error('Erreur parsing tags:', error);
+                                parsedTags = [];
+                            }
+                        }
+                        
+                        // Parser les screenshots
+                        if (typeof project.screenshots === 'string') {
+                            try {
+                                parsedScreenshots = JSON.parse(project.screenshots);
+                            } catch (error) {
+                                console.error('Erreur parsing screenshots:', error);
+                                parsedScreenshots = [];
+                            }
+                        }
+                        
+                        // Parser les actions
+                        if (typeof project.actions === 'string') {
+                            try {
+                                parsedActions = JSON.parse(project.actions);
+                            } catch (error) {
+                                console.error('Erreur parsing actions:', error);
+                                parsedActions = [];
+                            }
+                        }
+                        
+                        // Parser les challenges
+                        if (typeof project.challenges === 'string') {
+                            try {
+                                parsedChallenges = JSON.parse(project.challenges);
+                            } catch (error) {
+                                console.error('Erreur parsing challenges:', error);
+                                parsedChallenges = [];
+                            }
+                        }
+                        
+                        // Parser les apprentissages
+                        if (typeof project.apprentissages === 'string') {
+                            try {
+                                parsedApprentissages = JSON.parse(project.apprentissages);
+                            } catch (error) {
+                                console.error('Erreur parsing apprentissages:', error);
+                                parsedApprentissages = [];
+                            }
+                        }
+                        
+                        return {
+                            ...project,
+                            tags: parsedTags,
+                            screenshots: parsedScreenshots,
+                            actions: parsedActions,
+                            challenges: parsedChallenges,
+                            apprentissages: parsedApprentissages
+                        };
+                    });
+                    
+                    // Trouver le projet correspondant au slug
+                    this.project = projects.find(p => this.slugify(p.title) === titleSlug);
+                    
+                    if (!this.project) {
+                        this.error = 'Projet non trouvé';
+                    }
+                } else {
+                    this.error = data.message;
+                }
+            } catch (err) {
+                this.error = 'Erreur lors du chargement du projet';
+                console.error(err);
+            } finally {
+                this.loading = false;
+            }
+        },
+        
         openPopup(image) {
             this.popupImage = image;
             this.popupVisible = true;
@@ -311,5 +416,23 @@ ul {
     opacity: 0;
     animation: fadeIn 0.7s ease-out forwards;
     animation-delay: calc(var(--delay, 0) * 0.1s);
+}
+
+.loading, .error {
+    text-align: center;
+    padding: 3rem;
+    color: #ff80ab;
+}
+
+.loading p, .error p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.error {
+    background-color: rgba(255, 128, 171, 0.1);
+    border: 1px solid #ff80ab;
+    border-radius: 8px;
+    margin: 2rem;
 }
 </style>
