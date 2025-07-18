@@ -25,28 +25,46 @@
             <div class="form-group">
               <label>Catégorie *</label>
               <select v-model="currentProject.categorie" required>
-                <option value="Projet Scolaire">Projet Scolaire</option>
-                <option value="Projet Client">Projet Client</option>
-                <option value="Projet Perso">Projet Perso</option>
-                <option value="Projet Professionnel">Projet Professionnel</option>
-                <option value="Projet Pro">Projet Pro</option>
+                <option value="">Sélectionner une catégorie</option>
+                <option value="Projet Scolaire">🎓 Projet Scolaire</option>
+                <option value="Projet Client">💼 Projet Client</option>
+                <option value="Projet Perso">🚀 Projet Personnel</option>
+                <option value="Projet Professionnel">🏢 Projet Professionnel</option>
+                <option value="Projet Pro">⭐ Projet Pro</option>
               </select>
             </div>
 
-            <div class="form-group">
-              <label>Spécialité *</label>
-              <input v-model="currentProject.specialite" type="text" required>
-            </div>
+          <div class="form-group">
+            <label>Spécialité *</label>
+            <select v-model="currentProject.specialite" required>
+              <option value="">Sélectionner une spécialité</option>
+              <option value="Web">Développement Web</option>
+              <option value="Mobile">Développement Mobile</option>
+              <option value="Desktop">Application Desktop</option>
+              <option value="Discord">Bot Discord</option>
+              <option value="FiveM">FiveM/GTA RP</option>
+              <option value="API">API/Backend</option>
+              <option value="DevOps">DevOps/Infrastructure</option>
+              <option value="Data">Data Science/BI</option>
+              <option value="Réseau">Réseau/Sécurité</option>
+              <option value="IA">Intelligence Artificielle</option>
+              <option value="Blockchain">Blockchain</option>
+              <option value="IoT">Internet des Objets</option>
+              <option value="Game">Développement de Jeux</option>
+              <option value="Autre">Autre</option>
+            </select>
+          </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label>Status *</label>
               <select v-model="currentProject.status" required>
-                <option value="En cours">En cours</option>
-                <option value="Terminé">Terminé</option>
-                <option value="En pause">En pause</option>
-                <option value="Abandonné">Abandonné</option>
+                <option value="">Sélectionner un statut</option>
+                <option value="En cours">🔄 En cours</option>
+                <option value="Terminé">✅ Terminé</option>
+                <option value="En pause">⏸️ En pause</option>
+                <option value="Abandonné">❌ Abandonné</option>
               </select>
             </div>
 
@@ -57,8 +75,23 @@
           </div>
 
           <div class="form-group">
-            <label>Image URL *</label>
-            <input v-model="currentProject.image" type="text" required>
+            <label>Image *</label>
+            <div class="image-input-group">
+              <input v-model="currentProject.image" type="text" required placeholder="/assets/images/mon-projet.png">
+              <div class="image-suggestions">
+                <button type="button" 
+                        v-for="suggestion in imageSuggestions" 
+                        :key="suggestion.path"
+                        @click="currentProject.image = suggestion.path"
+                        class="suggestion-btn">
+                  {{ suggestion.name }}
+                </button>
+              </div>
+              <div v-if="currentProject.image" class="image-preview">
+                <img :src="currentProject.image" :alt="currentProject.title" @error="imageError = true">
+                <span v-if="imageError" class="error-text">⚠️ Image non trouvée</span>
+              </div>
+            </div>
           </div>
 
           <div class="form-group">
@@ -84,8 +117,84 @@
           </div>
 
           <div class="form-group">
-            <label>Tags (séparés par des virgules)</label>
-            <input v-model="tagsString" type="text" placeholder="React, Vue.js, TypeScript">
+            <label>Tags / Technologies *</label>
+            <div class="tags-selector">
+              <div class="available-tags">
+                <h4>Technologies disponibles :</h4>
+                <div class="tag-categories">
+                  <div class="tag-category">
+                    <h5>Frontend</h5>
+                    <div class="tag-list">
+                      <button type="button" 
+                              v-for="tag in frontendTags" 
+                              :key="tag"
+                              @click="toggleTag(tag)"
+                              :class="['tag-btn', { selected: currentProject.tags.includes(tag) }]">
+                        {{ tag }}
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div class="tag-category">
+                    <h5>Backend</h5>
+                    <div class="tag-list">
+                      <button type="button" 
+                              v-for="tag in backendTags" 
+                              :key="tag"
+                              @click="toggleTag(tag)"
+                              :class="['tag-btn', { selected: currentProject.tags.includes(tag) }]">
+                        {{ tag }}
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div class="tag-category">
+                    <h5>Base de données</h5>
+                    <div class="tag-list">
+                      <button type="button" 
+                              v-for="tag in databaseTags" 
+                              :key="tag"
+                              @click="toggleTag(tag)"
+                              :class="['tag-btn', { selected: currentProject.tags.includes(tag) }]">
+                        {{ tag }}
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div class="tag-category">
+                    <h5>Outils</h5>
+                    <div class="tag-list">
+                      <button type="button" 
+                              v-for="tag in toolsTags" 
+                              :key="tag"
+                              @click="toggleTag(tag)"
+                              :class="['tag-btn', { selected: currentProject.tags.includes(tag) }]">
+                        {{ tag }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="selected-tags">
+                <h4>Technologies sélectionnées ({{ currentProject.tags.length }}) :</h4>
+                <div class="selected-tags-list">
+                  <span v-for="tag in currentProject.tags" 
+                        :key="tag" 
+                        class="selected-tag">
+                    {{ tag }}
+                    <button type="button" @click="removeTag(tag)" class="remove-tag">×</button>
+                  </span>
+                </div>
+                <div class="custom-tag-input">
+                  <input v-model="customTag" 
+                         @keyup.enter="addCustomTag"
+                         type="text" 
+                         placeholder="Ajouter une technologie personnalisée...">
+                  <button type="button" @click="addCustomTag" class="btn-add-custom">Ajouter</button>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="form-group">
@@ -162,6 +271,44 @@ export default {
     const error = ref('')
     const showAddForm = ref(false)
     const editingProject = ref(null)
+    const customTag = ref('')
+    const imageError = ref(false)
+    
+    // Listes prédéfinies de technologies
+    const frontendTags = ref([
+      'HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Vue.js', 'Angular', 
+      'Svelte', 'Next.js', 'Nuxt.js', 'Gatsby', 'Tailwind CSS', 'Bootstrap', 
+      'Sass', 'Less', 'jQuery', 'Alpine.js', 'Webpack', 'Vite', 'Parcel'
+    ])
+    
+    const backendTags = ref([
+      'Node.js', 'Express', 'Python', 'Django', 'Flask', 'FastAPI', 'PHP', 
+      'Laravel', 'Symfony', 'Java', 'Spring', 'C#', '.NET', 'Ruby', 'Rails', 
+      'Go', 'Rust', 'C++', 'C', 'Kotlin', 'Scala', 'Lua'
+    ])
+    
+    const databaseTags = ref([
+      'MySQL', 'PostgreSQL', 'MongoDB', 'SQLite', 'Redis', 'MariaDB', 
+      'Oracle', 'SQL Server', 'Firebase', 'Supabase', 'PlanetScale', 
+      'Prisma', 'Sequelize', 'Mongoose', 'TypeORM'
+    ])
+    
+    const toolsTags = ref([
+      'Git', 'GitHub', 'GitLab', 'Docker', 'Kubernetes', 'AWS', 'Azure', 
+      'Google Cloud', 'Vercel', 'Netlify', 'Heroku', 'DigitalOcean', 
+      'Linux', 'Ubuntu', 'CentOS', 'nginx', 'Apache', 'Cloudflare', 
+      'Jest', 'Cypress', 'Selenium', 'Postman', 'Figma', 'Adobe XD',
+      'Discord.js', 'FiveM', 'Lua', 'ESX', 'QBCore', 'Strapi', 'Sanity'
+    ])
+    
+    const imageSuggestions = ref([
+      { name: 'Orbit', path: '/assets/images/orbit.png' },
+      { name: 'Discord', path: '/assets/images/discord.png' },
+      { name: 'WikiGame', path: '/assets/images/wikigame.png' },
+      { name: 'Prestiges Paris', path: '/assets/images/prestigesparis.png' },
+      { name: 'Still Link', path: '/assets/images/stilllink/still-link.png' },
+      { name: 'Bot Discord', path: '/assets/images/bot-discord.png' }
+    ])
     
     const currentProject = reactive({
       title: '',
@@ -185,6 +332,30 @@ export default {
         currentProject.tags = value.split(',').map(tag => tag.trim()).filter(tag => tag)
       }
     })
+
+    // Méthodes pour la gestion des tags
+    const toggleTag = (tag) => {
+      const index = currentProject.tags.indexOf(tag)
+      if (index > -1) {
+        currentProject.tags.splice(index, 1)
+      } else {
+        currentProject.tags.push(tag)
+      }
+    }
+
+    const removeTag = (tag) => {
+      const index = currentProject.tags.indexOf(tag)
+      if (index > -1) {
+        currentProject.tags.splice(index, 1)
+      }
+    }
+
+    const addCustomTag = () => {
+      if (customTag.value.trim() && !currentProject.tags.includes(customTag.value.trim())) {
+        currentProject.tags.push(customTag.value.trim())
+        customTag.value = ''
+      }
+    }
 
     // API calls
     const apiUrl = 'http://localhost:3001/api/projects'
@@ -281,13 +452,15 @@ export default {
     const closeForm = () => {
       showAddForm.value = false
       editingProject.value = null
+      imageError.value = false
+      customTag.value = ''
       Object.assign(currentProject, {
         title: '',
         image: '',
         categorie: '',
         specialite: '',
         status: '',
-        version: '',
+        version: 'v1.0',
         description: '',
         situation: '',
         tags: [],
@@ -309,7 +482,17 @@ export default {
       showAddForm,
       editingProject,
       currentProject,
+      customTag,
+      imageError,
+      frontendTags,
+      backendTags,
+      databaseTags,
+      toolsTags,
+      imageSuggestions,
       tagsString,
+      toggleTag,
+      removeTag,
+      addCustomTag,
       fetchProjects,
       saveProject,
       editProject,
@@ -325,35 +508,46 @@ export default {
 .admin-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 2rem;
 }
 
 .admin-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
 }
 
 .admin-header h1 {
-  color: #333;
   margin: 0;
+  font-size: 2.5rem;
+  font-weight: 700;
 }
 
 .btn-primary {
-  background: #007bff;
-  color: white;
+  background: #ffffff;
+  color: #667eea;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 12px 24px;
+  border-radius: 8px;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary:hover {
-  background: #0056b3;
+  background: #f8f9ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .modal-overlay {
@@ -362,109 +556,319 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  padding: 1rem;
 }
 
 .modal-content {
   background: white;
-  border-radius: 10px;
+  border-radius: 16px;
   padding: 0;
-  max-width: 600px;
-  width: 90%;
+  max-width: 900px;
+  width: 100%;
   max-height: 90vh;
   overflow-y: auto;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
 }
 
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  border-bottom: 1px solid #eee;
+  padding: 2rem;
+  border-bottom: 2px solid #e5e7eb;
+  background: #f9fafb;
+  border-radius: 16px 16px 0 0;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 1.75rem;
+  font-weight: 700;
 }
 
 .btn-close {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 1.5rem;
   cursor: pointer;
+  color: #6b7280;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.btn-close:hover {
+  background: #e5e7eb;
+  color: #374151;
 }
 
 .project-form {
-  padding: 20px;
+  padding: 2rem;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
 }
 
 .form-row {
-  display: flex;
-  gap: 20px;
-}
-
-.form-row .form-group {
-  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
   font-weight: 600;
-  color: #333;
+  color: #374151;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 14px;
+  padding: 0.75rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.tags-section {
+  background: #f9fafb;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 2px solid #e5e7eb;
+  margin-bottom: 1.5rem;
+}
+
+.tags-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tag-category {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.tag-category h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tag-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag-option {
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 20px;
+  background: white;
+  color: #374151;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.tag-option:hover {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.tag-option.selected {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.selected-tags {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  margin-top: 1rem;
+}
+
+.selected-tags h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.selected-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.selected-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #3b82f6;
+  color: white;
+  padding: 0.375rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+}
+
+.remove-tag {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.remove-tag:hover {
+  color: #fecaca;
+}
+
+.custom-tag-input {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.custom-tag-input input {
+  flex: 1;
+  margin: 0;
+}
+
+.image-section {
+  background: #f9fafb;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 2px solid #e5e7eb;
+  margin-bottom: 1.5rem;
+}
+
+.image-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.image-suggestion {
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+  color: #374151;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.image-suggestion:hover {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.image-preview {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.image-preview img {
+  max-width: 200px;
+  max-height: 150px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .form-actions {
   display: flex;
-  gap: 10px;
+  gap: 1rem;
   justify-content: flex-end;
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px solid #eee;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid #e5e7eb;
 }
 
 .btn-secondary {
-  background: #6c757d;
+  background: #6b7280;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 12px 24px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: #4b5563;
 }
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 20px;
+  gap: 1.5rem;
 }
 
 .project-card {
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
   overflow: hidden;
   background: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .project-header {
   display: flex;
   align-items: center;
-  padding: 15px;
-  gap: 15px;
+  padding: 1.5rem;
+  gap: 1rem;
 }
 
 .project-image {
@@ -472,109 +876,168 @@ export default {
   height: 60px;
   object-fit: cover;
   border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .project-info h3 {
-  margin: 0 0 5px 0;
-  color: #333;
+  margin: 0 0 0.5rem 0;
+  color: #1f2937;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .project-category {
-  background: #e9ecef;
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 12px;
-  margin-right: 8px;
+  background: #f3f4f6;
+  color: #374151;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-right: 0.5rem;
 }
 
 .project-status {
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 12px;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
   text-transform: uppercase;
 }
 
 .project-status.terminé {
-  background: #d4edda;
-  color: #155724;
+  background: #d1fae5;
+  color: #065f46;
 }
 
 .project-status.en-cours {
-  background: #fff3cd;
-  color: #856404;
+  background: #fef3c7;
+  color: #92400e;
 }
 
 .project-details {
-  padding: 0 15px 15px;
+  padding: 0 1.5rem 1.5rem;
 }
 
 .project-description {
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 10px;
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
 }
 
 .project-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 0.5rem;
 }
 
 .tag {
-  background: #f8f9fa;
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 11px;
-  color: #666;
+  background: #f3f4f6;
+  color: #374151;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
 }
 
 .project-actions {
   display: flex;
-  gap: 8px;
-  padding: 15px;
-  border-top: 1px solid #eee;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  background: #f9fafb;
 }
 
 .btn-edit, .btn-delete, .btn-toggle {
-  padding: 8px 12px;
+  padding: 0.5rem 0.75rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 0.375rem;
+  transition: all 0.3s ease;
 }
 
 .btn-edit {
-  background: #ffc107;
-  color: #212529;
+  background: #f59e0b;
+  color: white;
+}
+
+.btn-edit:hover {
+  background: #d97706;
 }
 
 .btn-delete {
-  background: #dc3545;
+  background: #ef4444;
   color: white;
+}
+
+.btn-delete:hover {
+  background: #dc2626;
 }
 
 .btn-toggle {
-  background: #6c757d;
+  background: #6b7280;
   color: white;
 }
 
+.btn-toggle:hover {
+  background: #4b5563;
+}
+
 .btn-toggle.visible {
-  background: #28a745;
+  background: #10b981;
+}
+
+.btn-toggle.visible:hover {
+  background: #059669;
 }
 
 .loading, .error-message {
   text-align: center;
-  padding: 40px;
-  color: #666;
+  padding: 3rem;
+  color: #6b7280;
 }
 
 .error-message {
-  color: #dc3545;
-  background: #f8d7da;
-  border: 1px solid #f5c6cb;
-  border-radius: 5px;
+  color: #dc2626;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .admin-container {
+    padding: 1rem;
+  }
+  
+  .admin-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .tags-categories {
+    grid-template-columns: 1fr;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .project-actions {
+    flex-wrap: wrap;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
 }
 </style>
