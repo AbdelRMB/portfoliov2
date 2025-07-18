@@ -307,7 +307,8 @@ export default {
       { name: 'WikiGame', path: '/assets/images/wikigame.png' },
       { name: 'Prestiges Paris', path: '/assets/images/prestigesparis.png' },
       { name: 'Still Link', path: '/assets/images/stilllink/still-link.png' },
-      { name: 'Bot Discord', path: '/assets/images/bot-discord.png' }
+      { name: 'Bot Discord', path: '/assets/images/bot-discord.png' },
+      { name: 'Default', path: '/assets/dev.jpg' },
     ])
     
     const currentProject = reactive({
