@@ -426,7 +426,22 @@ export default {
 
     const editProject = (project) => {
       editingProject.value = project
-      Object.assign(currentProject, project)
+      
+      // Parser les tags si c'est une string JSON
+      let parsedTags = project.tags;
+      if (typeof project.tags === 'string') {
+        try {
+          parsedTags = JSON.parse(project.tags);
+        } catch (error) {
+          console.error('Erreur parsing tags:', error);
+          parsedTags = [];
+        }
+      }
+      
+      Object.assign(currentProject, {
+        ...project,
+        tags: parsedTags
+      })
       showAddForm.value = true
     }
 
